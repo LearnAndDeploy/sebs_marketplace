@@ -1,0 +1,4965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEBS Marketplace | Campus Shopping & Selling</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF6B35;
+            --primary-dark: #E55A2B;
+            --secondary: #004E89;
+            --accent: #00A896;
+            --dark: #1A1A2E;
+            --light: #F8F9FA;
+            --gray: #6C757D;
+            --light-gray: #E9ECEF;
+            --success: #20C997;
+            --warning: #FFC107;
+            --border-radius: 12px;
+            --shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+            --container-width: 1200px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark);
+            background-color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+        }
+
+        .container {
+            width: 100%;
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: white;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--warning));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 22px;
+            font-weight: 800;
+            font-family: 'Urbanist', sans-serif;
+        }
+
+        .logo-text {
+            font-family: 'Urbanist', sans-serif;
+            font-weight: 800;
+            font-size: 32px;
+            color: var(--dark);
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text span {
+            color: var(--primary);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 35px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 16px;
+            padding: 8px 0;
+            position: relative;
+            transition: var(--transition);
+            font-family: 'Urbanist', sans-serif;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary);
+            border-radius: 3px;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .user-menu {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .icon-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-color: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark);
+            text-decoration: none;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .icon-btn:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: var(--secondary);
+            color: white;
+            font-size: 12px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .sell-btn {
+            background: linear-gradient(to right, var(--primary), var(--warning));
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 12px 24px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Urbanist', sans-serif;
+        }
+
+        .sell-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 107, 53, 0.2);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--dark);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0 60px;
+            background: linear-gradient(rgba(26, 26, 46, 0.8), rgba(26, 26, 46, 0.9)), url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+            color: white;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 56px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .hero-text h1 span {
+            background: linear-gradient(to right, var(--primary), var(--warning));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 30px;
+            max-width: 500px;
+        }
+
+        .search-container {
+            position: relative;
+            margin-bottom: 30px;
+            max-width: 500px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 18px 25px;
+            border: 2px solid transparent;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            transition: var(--transition);
+            background-color: rgba(255, 255, 255, 0.95);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.1);
+            background-color: white;
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 8px;
+            top: 8px;
+            background: linear-gradient(to right, var(--primary), var(--warning));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .search-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 107, 53, 0.3);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .auth-btn {
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-family: 'Urbanist', sans-serif;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-size: 16px;
+        }
+
+        .auth-btn.signup {
+            background: linear-gradient(to right, var(--primary), var(--warning));
+            color: white;
+        }
+
+        .auth-btn.login {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .auth-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .stats {
+            display: flex;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--primary);
+            font-family: 'Urbanist', sans-serif;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-illustration {
+            width: 100%;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transform: perspective(1000px) rotateY(-5deg);
+            transition: var(--transition);
+        }
+
+        /* Categories Section */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 36px;
+            color: var(--dark);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--warning));
+            border-radius: 2px;
+        }
+
+        .view-all {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            font-family: 'Urbanist', sans-serif;
+        }
+
+        .view-all:hover {
+            gap: 12px;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 25px;
+        }
+
+        .category-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.15);
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary), var(--warning));
+        }
+
+        .category-icon {
+            width: 70px;
+            height: 70px;
+            background-color: rgba(255, 107, 53, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 30px;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .category-card:hover .category-icon {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .category-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 8px;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .category-count {
+            font-size: 14px;
+            color: var(--gray);
+            background-color: var(--light-gray);
+            padding: 4px 12px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        /* Products Section */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: var(--secondary);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .product-badge.sale {
+            background-color: var(--accent);
+        }
+
+        .product-badge.new {
+            background-color: var(--primary);
+        }
+
+        /* ADDED FROM SECOND CODE: Additional badge classes */
+        .product-badge.popular {
+            background-color: #9C27B0;
+        }
+
+        .product-badge.essential {
+            background-color: #2196F3;
+        }
+
+        .product-image {
+            height: 220px;
+            width: 100%;
+            background-color: #f9f9f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-img {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-title {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--dark);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .product-price {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-family: 'Urbanist', sans-serif;
+        }
+
+        .product-price.old {
+            font-size: 18px;
+            color: var(--gray);
+            text-decoration: line-through;
+            margin-right: 10px;
+            font-weight: 500;
+        }
+
+        .product-delivery {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--success);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .product-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid var(--light-gray);
+        }
+
+        .action-btn {
+            background: none;
+            border: none;
+            color: var(--gray);
+            font-size: 18px;
+            cursor: pointer;
+            transition: var(--transition);
+            padding: 5px;
+        }
+
+        .action-btn:hover {
+            color: var(--primary);
+        }
+
+        .add-to-cart {
+            background: linear-gradient(to right, var(--primary), var(--warning));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Urbanist', sans-serif;
+        }
+
+        .add-to-cart:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 107, 53, 0.2);
+        }
+
+        /* Sell Section */
+        .sell-section {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            color: white;
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sell-content {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .sell-title {
+            font-size: 42px;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .sell-subtitle {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 50px;
+            opacity: 0.9;
+        }
+
+        .sell-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .sell-step {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .sell-step:hover {
+            transform: translateY(-10px);
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .step-icon {
+            width: 70px;
+            height: 70px;
+            background-color: white;
+            color: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            margin: 0 auto 20px;
+        }
+
+        .step-title {
+            font-size: 22px;
+            margin-bottom: 15px;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .sell-cta {
+            background-color: white;
+            color: var(--secondary);
+            border: none;
+            border-radius: 30px;
+            padding: 16px 40px;
+            font-weight: 700;
+            font-size: 18px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Urbanist', sans-serif;
+        }
+
+        .sell-cta:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Food Services Section */
+        .food-section {
+            background-color: #FFF9F0;
+        }
+
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .food-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .food-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .food-header {
+            padding: 25px 25px 0;
+        }
+
+        .food-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--dark);
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .food-vendor {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--gray);
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .vendor-badge {
+            background-color: var(--accent);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .food-image {
+            height: 180px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .food-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .food-info {
+            padding: 25px;
+        }
+
+        .food-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .delivery-time {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .delivery-fee {
+            font-size: 18px;
+            color: var(--success);
+            font-weight: 600;
+        }
+
+        .food-description {
+            color: var(--gray);
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+
+        .order-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-family: 'Urbanist', sans-serif;
+        }
+
+        .order-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 70px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-column h3 {
+            font-size: 22px;
+            margin-bottom: 25px;
+            color: white;
+            font-family: 'Space Grotesk', sans-serif;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary), var(--warning));
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: #B0B7C3;
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: #B0B7C3;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .social-link {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #8A94A6;
+            font-size: 14px;
+        }
+
+        .highlight {
+            color: var(--warning);
+            font-weight: 600;
+        }
+
+        /* Product Details Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background-color: white;
+            border-radius: var(--border-radius);
+            width: 100%;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 28px;
+            cursor: pointer;
+            color: var(--gray);
+            z-index: 10;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+            color: var(--dark);
+        }
+
+        .product-detail {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            padding: 40px;
+        }
+
+        .product-gallery {
+            position: relative;
+        }
+
+        .product-main-image {
+            width: 100%;
+            height: 400px;
+            background-color: #f9f9f9;
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .product-main-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-thumbnails {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+            overflow: hidden;
+        }
+
+        .thumbnail:hover, .thumbnail.active {
+            border-color: var(--primary);
+        }
+
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-details {
+            padding-right: 20px;
+        }
+
+        .product-detail-title {
+            font-size: 32px;
+            margin-bottom: 15px;
+            color: var(--dark);
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .stars {
+            color: var(--warning);
+        }
+
+        .review-count {
+            color: var(--gray);
+            font-size: 14px;
+        }
+
+        .product-price-detail {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-family: 'Urbanist', sans-serif;
+        }
+
+        .product-description {
+            color: var(--gray);
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .product-specs {
+            margin-bottom: 30px;
+        }
+
+        .spec-item {
+            display: flex;
+            margin-bottom: 12px;
+        }
+
+        .spec-label {
+            width: 120px;
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        .spec-value {
+            color: var(--gray);
+        }
+
+        .product-actions-detail {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background-color: var(--light-gray);
+            border-radius: 10px;
+            padding: 10px 15px;
+        }
+
+        .quantity-btn {
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: var(--dark);
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+            transition: var(--transition);
+        }
+
+        .quantity-btn:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .quantity {
+            font-size: 18px;
+            font-weight: 600;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .buy-now-btn {
+            background: linear-gradient(to right, var(--secondary), var(--primary));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 15px 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            flex: 1;
+            font-family: 'Urbanist', sans-serif;
+            font-size: 16px;
+        }
+
+        .buy-now-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 78, 137, 0.2);
+        }
+
+        /* Sell Form Modal */
+        .sell-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .sell-form-container {
+            background-color: white;
+            border-radius: var(--border-radius);
+            width: 100%;
+            max-width: 700px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            padding: 40px;
+        }
+
+        .form-title {
+            font-size: 28px;
+            margin-bottom: 30px;
+            color: var(--dark);
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .form-input, .form-textarea, .form-select {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid var(--light-gray);
+            border-radius: 10px;
+            font-size: 16px;
+            font-family: 'Inter', sans-serif;
+            transition: var(--transition);
+        }
+
+        .form-input:focus, .form-textarea:focus, .form-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .image-upload-container {
+            border: 2px dashed var(--light-gray);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .image-upload-container:hover {
+            border-color: var(--primary);
+            background-color: rgba(255, 107, 53, 0.05);
+        }
+
+        .upload-icon {
+            font-size: 48px;
+            color: var(--gray);
+            margin-bottom: 15px;
+        }
+
+        .upload-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .upload-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .uploaded-images {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .uploaded-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .uploaded-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .remove-image {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .form-submit {
+            background: linear-gradient(to right, var(--primary), var(--warning));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 16px 30px;
+            font-weight: 700;
+            font-size: 18px;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+            font-family: 'Urbanist', sans-serif;
+            margin-top: 20px;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 107, 53, 0.2);
+        }
+
+        /* Category Page */
+        .category-page {
+            display: none;
+            padding: 40px 0 80px;
+        }
+
+        .category-header {
+            padding: 60px 0;
+            margin-bottom: 40px;
+            text-align: center;
+            color: white;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .category-title {
+            font-size: 48px;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .category-description {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .back-to-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 30px;
+            font-family: 'Urbanist', sans-serif;
+            background-color: rgba(255, 107, 53, 0.8);
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: var(--transition);
+        }
+
+        .back-to-home:hover {
+            background-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* ADDED FROM SECOND CODE: Sort Dropdown */
+        .sort-options {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sort-select {
+            padding: 10px 15px;
+            border: 2px solid var(--light-gray);
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            background-color: white;
+            color: var(--dark);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .sort-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+        }
+
+        /* ADDED FROM SECOND CODE: No Results Message */
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--gray);
+        }
+
+        .no-results-icon {
+            font-size: 64px;
+            color: var(--light-gray);
+            margin-bottom: 20px;
+        }
+
+        /* Profile Section */
+        .profile-section {
+            display: none;
+            padding: 40px 0 80px;
+        }
+
+        .profile-header {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(0, 168, 150, 0.1) 100%);
+            padding: 60px 0;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .profile-container {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 40px;
+        }
+
+        .profile-sidebar {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .profile-info {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 48px;
+            color: var(--primary);
+            overflow: hidden;
+        }
+
+        .profile-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-name {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+
+        .profile-email {
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+
+        .profile-menu {
+            list-style: none;
+        }
+
+        .profile-menu li {
+            margin-bottom: 10px;
+        }
+
+        .profile-menu a {
+            display: block;
+            padding: 12px 20px;
+            border-radius: 8px;
+            color: var(--dark);
+            text-decoration: none;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .profile-menu a:hover, .profile-menu a.active {
+            background-color: rgba(255, 107, 53, 0.1);
+            color: var(--primary);
+        }
+
+        .profile-content {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 40px;
+            box-shadow: var(--shadow);
+        }
+
+        .profile-tab {
+            display: none;
+        }
+
+        .profile-tab.active {
+            display: block;
+        }
+
+        .tab-title {
+            font-size: 28px;
+            margin-bottom: 30px;
+            color: var(--dark);
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--light-gray);
+        }
+
+        .orders-grid {
+            display: grid;
+            gap: 20px;
+        }
+
+        .order-card {
+            border: 1px solid var(--light-gray);
+            border-radius: 10px;
+            padding: 20px;
+            transition: var(--transition);
+        }
+
+        .order-card:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow);
+        }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .order-id {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .order-status {
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .status-delivered {
+            background-color: rgba(32, 201, 151, 0.1);
+            color: var(--success);
+        }
+
+        .status-pending {
+            background-color: rgba(255, 193, 7, 0.1);
+            color: var(--warning);
+        }
+
+        .order-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .order-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .order-item-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .order-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .wishlist-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--gray);
+        }
+
+        .empty-icon {
+            font-size: 64px;
+            color: var(--light-gray);
+            margin-bottom: 20px;
+        }
+
+        /* ADDED FROM SECOND CODE: Search Results Page */
+        .search-results-page {
+            display: none;
+            padding: 40px 0 80px;
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: linear-gradient(to right, var(--primary), var(--warning));
+            color: white;
+            padding: 15px 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            z-index: 3000;
+            font-weight: 600;
+            animation: slideIn 0.3s ease;
+            max-width: 350px;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes slideOut {
+            from { transform: translateY(0); opacity: 1; }
+            to { transform: translateY(100%); opacity: 0; }
+        }
+
+        /* Login/Signup Modal */
+        .auth-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .auth-container {
+            background-color: white;
+            border-radius: var(--border-radius);
+            width: 100%;
+            max-width: 450px;
+            padding: 40px;
+            position: relative;
+        }
+
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--light-gray);
+        }
+
+        .auth-tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            background: none;
+            border: none;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--gray);
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'Urbanist', sans-serif;
+        }
+
+        .auth-tab.active {
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .auth-form {
+            display: none;
+        }
+
+        .auth-form.active {
+            display: block;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1100px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 40px;
+            }
+            
+            .hero-text p {
+                margin: 0 auto 30px;
+            }
+            
+            .search-container {
+                margin: 0 auto 30px;
+            }
+            
+            .auth-buttons, .stats {
+                justify-content: center;
+            }
+            
+            .profile-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                border-radius: 0 0 var(--border-radius) var(--border-radius);
+                z-index: 1000;
+            }
+            
+            .nav-menu.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .product-detail {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .product-details {
+                padding-right: 0;
+            }
+            
+            .sell-form-container {
+                padding: 30px 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-text h1 {
+                font-size: 42px;
+            }
+            
+            .section-title {
+                font-size: 32px;
+            }
+            
+            .categories-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .sell-steps {
+                grid-template-columns: 1fr;
+            }
+            
+            .product-actions-detail {
+                flex-direction: column;
+            }
+            
+            .product-detail {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .logo-text {
+                font-size: 26px;
+            }
+            
+            .hero-text h1 {
+                font-size: 36px;
+            }
+            
+            .section {
+                padding: 60px 0;
+            }
+            
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .auth-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            opacity: 0;
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-content">
+            <a href="#" class="logo" id="homeLogo">
+                <div class="logo-icon">S</div>
+                <div class="logo-text">SE<span>BS</span></div>
+            </a>
+            
+            <nav class="nav-menu" id="navMenu">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#categories" class="nav-link">Categories</a>
+                <a href="#products" class="nav-link">Products</a>
+                <a href="#food" class="nav-link">Food</a>
+                <a href="#sell" class="nav-link">Sell</a>
+                <a href="#profile" class="nav-link" id="profileLink" style="display: none;">Profile</a>
+            </nav>
+            
+            <div class="header-actions">
+                <div class="user-menu">
+                    <a href="#" class="icon-btn" id="wishlistBtn">
+                        <i class="far fa-heart"></i>
+                    </a>
+                    <a href="#" class="icon-btn" id="profileBtn" style="display: none;">
+                        <i class="far fa-user"></i>
+                    </a>
+                    <a href="#" class="icon-btn" id="loginIconBtn">
+                        <i class="far fa-user"></i>
+                    </a>
+                    <a href="#" class="icon-btn" id="cartBtn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                </div>
+                <button class="sell-btn" id="sellBtn">
+                    <i class="fas fa-plus"></i>
+                    Sell Now
+                </button>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="mainContent">
+        <!-- Home Section -->
+        <section class="hero" id="home">
+            <div class="container hero-content">
+                <div class="hero-text">
+                    <h1>Shop Smart, <span>Campus Deals</span></h1>
+                    <p>SEBS Marketplace connects students with the best campus deals. Buy, sell, and trade everything you need for university life.</p>
+                    
+                    <div class="search-container">
+                        <input type="text" class="search-input" placeholder="Search for textbooks, electronics, fashion, food...">
+                        <button class="search-btn">
+                            <i class="fas fa-search"></i>
+                            Search
+                        </button>
+                    </div>
+                    
+                    <div class="auth-buttons" id="authButtons">
+                        <button class="auth-btn signup" id="signupBtnMain">Sign Up Free</button>
+                        <button class="auth-btn login" id="loginBtnMain">Login</button>
+                    </div>
+                    
+                    <div class="stats">
+                        <div class="stat-item">
+                            <div class="stat-number">2,500+</div>
+                            <div class="stat-label">Active Sellers</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">15,000+</div>
+                            <div class="stat-label">Products</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">50,000+</div>
+                            <div class="stat-label">Students</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="SEBS Marketplace" class="hero-illustration">
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section class="section" id="categories">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Shop by Category</h2>
+                    <a href="#" class="view-all" id="viewAllCategories">
+                        View All Categories
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="categories-grid" id="categoriesGrid">
+                    <!-- Categories will be dynamically loaded -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Products -->
+        <section class="section" id="products">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Trending Products</h2>
+                    <!-- ADDED FROM SECOND CODE: Sort Dropdown -->
+                    <div class="sort-options">
+                        <select id="sortSelect" class="sort-select">
+                            <option value="featured">Featured</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="newest">Newest First</option>
+                            <option value="popular">Most Popular</option>
+                        </select>
+                        <a href="#" class="view-all" id="viewAllProducts">
+                            View All Products
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="products-grid" id="productsGrid">
+                    <!-- Products will be dynamically loaded -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Sell Section -->
+        <section class="sell-section" id="sell">
+            <div class="container sell-content">
+                <h2 class="sell-title">Start Selling on SEBS</h2>
+                <p class="sell-subtitle">Turn your unused items into cash. List products in minutes and reach thousands of campus buyers.</p>
+                
+                <div class="sell-steps">
+                    <div class="sell-step fade-in">
+                        <div class="step-icon">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <h3 class="step-title">Create Account</h3>
+                        <p>Sign up as a seller with your campus email</p>
+                    </div>
+                    <div class="sell-step fade-in delay-1">
+                        <div class="step-icon">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <h3 class="step-title">List Your Item</h3>
+                        <p>Add photos, description, and price for your product</p>
+                    </div>
+                    <div class="sell-step fade-in delay-2">
+                        <div class="step-icon">
+                            <i class="fas fa-bullhorn"></i>
+                        </div>
+                        <h3 class="step-title">Get Noticed</h3>
+                        <p>Your listing appears to thousands of campus buyers</p>
+                    </div>
+                    <div class="sell-step fade-in delay-3">
+                        <div class="step-icon">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <h3 class="step-title">Make Sales</h3>
+                        <p>Connect with buyers and arrange safe campus pickup</p>
+                    </div>
+                </div>
+                
+                <button class="sell-cta" id="sellNowBtn">
+                    <i class="fas fa-rocket"></i>
+                    Start Selling Now
+                </button>
+            </div>
+        </section>
+
+        <!-- Food Services -->
+        <section class="section food-section" id="food">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Campus Food Delivery</h2>
+                    <a href="#" class="view-all" id="viewAllFood">
+                        View All Restaurants
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="food-grid" id="foodGrid">
+                    <!-- Food items will be dynamically loaded -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Product Details Modal -->
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <div class="product-detail" id="productDetailContent">
+                <!-- Product details will be dynamically loaded -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Sell Form Modal -->
+    <div class="sell-modal" id="sellModal">
+        <div class="sell-form-container">
+            <span class="close-modal" id="closeSellModal">&times;</span>
+            <h2 class="form-title">List Your Product</h2>
+            <form id="sellForm">
+                <div class="form-group">
+                    <label class="form-label">Product Title</label>
+                    <input type="text" class="form-input" id="productTitle" placeholder="e.g. MacBook Air M1 2020" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Category</label>
+                    <select class="form-select" id="productCategory" required>
+                        <option value="">Select a category</option>
+                        <option value="Electronics">Electronics</option>
+                        <option value="Textbooks">Textbooks</option>
+                        <option value="Fashion">Fashion</option>
+                        <option value="Home & Dorm">Home & Dorm</option>
+                        <option value="Beauty & Care">Beauty & Care</option>
+                        <option value="Food & Snacks">Food & Snacks</option>
+                        <option value="Sneakers">Sneakers</option>
+                        <option value="Services">Services</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Price (₵)</label>
+                    <input type="number" class="form-input" id="productPrice" placeholder="e.g. 4200" min="1" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Description</label>
+                    <textarea class="form-textarea" id="productDescription" placeholder="Describe your product in detail..." rows="4" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Condition</label>
+                    <select class="form-select" id="productCondition" required>
+                        <option value="">Select condition</option>
+                        <option value="Brand New">Brand New</option>
+                        <option value="Like New">Like New</option>
+                        <option value="Good">Good</option>
+                        <option value="Fair">Fair</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Product Images</label>
+                    <div class="image-upload-container">
+                        <div class="upload-icon">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                        </div>
+                        <p>Click to upload product images</p>
+                        <p style="font-size: 14px; color: var(--gray);">JPEG or PNG, max 5MB each</p>
+                        <button type="button" class="upload-btn" id="uploadImageBtn">
+                            <i class="fas fa-upload"></i>
+                            Upload Images
+                        </button>
+                        <input type="file" id="imageUploadInput" multiple accept="image/*" style="display: none;">
+                        <div class="uploaded-images" id="uploadedImagesContainer"></div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Location (Campus)</label>
+                    <select class="form-select" id="productLocation" required>
+                        <option value="">Select campus location</option>
+                        <option value="University of Ghana, Legon">University of Ghana, Legon</option>
+                        <option value="KNUST, Kumasi">KNUST, Kumasi</option>
+                        <option value="UCC, Cape Coast">UCC, Cape Coast</option>
+                        <option value="Central Campus">Central Campus</option>
+                        <option value="North Campus">North Campus</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="form-submit">
+                    <i class="fas fa-check-circle"></i>
+                    List Product Now
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Login/Signup Modal -->
+    <div class="auth-modal" id="authModal">
+        <div class="auth-container">
+            <span class="close-modal" id="closeAuthModal">&times;</span>
+            <div class="auth-tabs">
+                <button class="auth-tab active" data-tab="login">Login</button>
+                <button class="auth-tab" data-tab="signup">Sign Up</button>
+            </div>
+            
+            <form class="auth-form active" id="loginForm">
+                <div class="form-group">
+                    <label class="form-label">Email Address</label>
+                    <input type="email" class="form-input" id="loginEmail" placeholder="student@campus.edu" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-input" id="loginPassword" placeholder="Enter your password" required>
+                </div>
+                
+                <button type="submit" class="form-submit">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Login
+                </button>
+            </form>
+            
+            <form class="auth-form" id="signupForm">
+                <div class="form-group">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" class="form-input" id="signupName" placeholder="John Doe" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Email Address</label>
+                    <input type="email" class="form-input" id="signupEmail" placeholder="student@campus.edu" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-input" id="signupPassword" placeholder="Create a password" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Confirm Password</label>
+                    <input type="password" class="form-input" id="signupConfirmPassword" placeholder="Confirm your password" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Campus Location</label>
+                    <select class="form-select" id="signupCampus" required>
+                        <option value="">Select your campus</option>
+                        <option value="University of Ghana, Legon">University of Ghana, Legon</option>
+                        <option value="KNUST, Kumasi">KNUST, Kumasi</option>
+                        <option value="UCC, Cape Coast">UCC, Cape Coast</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="form-submit">
+                    <i class="fas fa-user-plus"></i>
+                    Create Account
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Category Page -->
+    <div class="category-page" id="categoryPage">
+        <div class="category-header" id="categoryHeader">
+            <div class="container">
+                <h1 class="category-title" id="categoryPageTitle">Category</h1>
+                <p class="category-description" id="categoryPageDescription">Browse all products in this category</p>
+                <a href="#" class="back-to-home" id="backToHome">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Home
+                </a>
+            </div>
+        </div>
+        
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" id="categoryProductsTitle">Products</h2>
+                <!-- ADDED FROM SECOND CODE: Sort Dropdown for Category Page -->
+                <div class="sort-options">
+                    <select id="categorySortSelect" class="sort-select">
+                        <option value="featured">Featured</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="newest">Newest First</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="products-grid" id="categoryProductsGrid">
+                <!-- Category products will be dynamically loaded -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ADDED FROM SECOND CODE: Search Results Page -->
+    <div class="category-page" id="searchResultsPage" style="display: none;">
+        <div class="category-header" style="background: linear-gradient(rgba(26, 26, 46, 0.8), rgba(26, 26, 46, 0.9)), url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');">
+            <div class="container">
+                <h1 class="category-title" id="searchResultsTitle">Search Results</h1>
+                <p class="category-description" id="searchResultsDescription">Products matching your search</p>
+                <a href="#" class="back-to-home" id="backToHomeFromSearch">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Home
+                </a>
+            </div>
+        </div>
+        
+        <div class="container">
+            <div class="products-grid" id="searchResultsGrid">
+                <!-- Search results will be dynamically loaded -->
+            </div>
+            <!-- ADDED FROM SECOND CODE: No Results Message -->
+            <div id="noSearchResults" class="no-results" style="display: none;">
+                <div class="no-results-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h3>No products found</h3>
+                <p>Try searching with different keywords</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Section -->
+    <div class="profile-section" id="profileSection">
+        <div class="profile-header">
+            <div class="container">
+                <h1 class="category-title">My Profile</h1>
+                <p class="category-description">Manage your account, orders, and listings</p>
+                <a href="#" class="back-to-home" id="backToHomeFromProfile">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Home
+                </a>
+            </div>
+        </div>
+        
+        <div class="container profile-container">
+            <div class="profile-sidebar">
+                <div class="profile-info">
+                    <div class="profile-avatar" id="userAvatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h2 class="profile-name" id="userName">Guest User</h2>
+                    <p class="profile-email" id="userEmail">Please login to view profile</p>
+                    <div class="user-stats">
+                        <div style="display: flex; justify-content: space-around; margin-top: 20px;">
+                            <div style="text-align: center;">
+                                <div style="font-size: 24px; font-weight: 700; color: var(--primary);" id="orderCount">0</div>
+                                <div style="font-size: 14px; color: var(--gray);">Orders</div>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="font-size: 24px; font-weight: 700; color: var(--primary);" id="listingCount">0</div>
+                                <div style="font-size: 14px; color: var(--gray);">Listings</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <ul class="profile-menu">
+                    <li><a href="#profile" class="active" data-tab="dashboard">Dashboard</a></li>
+                    <li><a href="#orders" data-tab="orders">My Orders</a></li>
+                    <li><a href="#listings" data-tab="listings">My Listings</a></li>
+                    <li><a href="#wishlist" data-tab="wishlist">Wishlist</a></li>
+                    <li><a href="#settings" data-tab="settings">Account Settings</a></li>
+                    <li><a href="#logout" id="logoutBtn">Logout</a></li>
+                </ul>
+            </div>
+            
+            <div class="profile-content">
+                <div class="profile-tab active" id="dashboardTab">
+                    <h2 class="tab-title">Dashboard</h2>
+                    <div class="empty-state" id="dashboardEmpty">
+                        <div class="empty-icon">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        <h3>Welcome to your dashboard!</h3>
+                        <p>Login to see your recent activity, orders, and listings.</p>
+                    </div>
+                    <div id="dashboardContent" style="display: none;">
+                        <div style="background: linear-gradient(to right, rgba(255, 107, 53, 0.1), rgba(0, 78, 137, 0.1)); padding: 30px; border-radius: var(--border-radius); margin-bottom: 30px;">
+                            <h3 style="margin-bottom: 15px;" id="welcomeMessage">Welcome back!</h3>
+                            <p>You have <strong><span id="pendingOrders">0</span> pending orders</strong> and <strong><span id="activeListings">0</span> active listings</strong>.</p>
+                        </div>
+                        
+                        <h3 style="margin-bottom: 20px;">Recent Activity</h3>
+                        <div class="orders-grid" id="recentActivity">
+                            <!-- Recent activity will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="profile-tab" id="ordersTab">
+                    <h2 class="tab-title">My Orders</h2>
+                    <div class="empty-state" id="ordersEmpty">
+                        <div class="empty-icon">
+                            <i class="fas fa-shopping-bag"></i>
+                        </div>
+                        <h3>No orders yet</h3>
+                        <p>Your orders will appear here once you make a purchase.</p>
+                        <button class="auth-btn signup" style="margin-top: 20px;" id="shopNowBtn">Start Shopping</button>
+                    </div>
+                    <div class="orders-grid" id="ordersGrid" style="display: none;">
+                        <!-- Orders will be loaded here -->
+                    </div>
+                </div>
+                
+                <div class="profile-tab" id="listingsTab">
+                    <h2 class="tab-title">My Listings</h2>
+                    <div class="empty-state" id="listingsEmpty">
+                        <div class="empty-icon">
+                            <i class="fas fa-store"></i>
+                        </div>
+                        <h3>No listings yet</h3>
+                        <p>Start selling by listing your first product.</p>
+                        <button class="auth-btn signup" style="margin-top: 20px;" id="createListingBtn">Create Listing</button>
+                    </div>
+                    <div class="products-grid" id="listingsGrid" style="display: none;">
+                        <!-- User's listings will be loaded here -->
+                    </div>
+                </div>
+                
+                <div class="profile-tab" id="wishlistTab">
+                    <h2 class="tab-title">My Wishlist</h2>
+                    <div class="empty-state" id="wishlistEmpty">
+                        <div class="empty-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h3>Your wishlist is empty</h3>
+                        <p>Save products you love by clicking the heart icon.</p>
+                        <button class="auth-btn signup" style="margin-top: 20px;" id="browseProductsBtn">Browse Products</button>
+                    </div>
+                    <div class="wishlist-grid" id="wishlistGrid" style="display: none;">
+                        <!-- Wishlist items will be loaded here -->
+                    </div>
+                </div>
+                
+                <div class="profile-tab" id="settingsTab">
+                    <h2 class="tab-title">Account Settings</h2>
+                    <div class="empty-state" id="settingsEmpty">
+                        <div class="empty-icon">
+                            <i class="fas fa-user-cog"></i>
+                        </div>
+                        <h3>Please login to manage your account</h3>
+                        <p>Login to update your profile information and settings.</p>
+                        <button class="auth-btn signup" style="margin-top: 20px;" id="loginSettingsBtn">Login Now</button>
+                    </div>
+                    <form id="settingsForm" style="display: none;">
+                        <div class="form-group">
+                            <label class="form-label">Full Name</label>
+                            <input type="text" class="form-input" id="settingsName" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" class="form-input" id="settingsEmail" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Phone Number</label>
+                            <input type="tel" class="form-input" id="settingsPhone">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Campus Location</label>
+                            <select class="form-select" id="settingsCampus" required>
+                                <option value="University of Ghana, Legon">University of Ghana, Legon</option>
+                                <option value="KNUST, Kumasi">KNUST, Kumasi</option>
+                                <option value="UCC, Cape Coast">UCC, Cape Coast</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Profile Picture</label>
+                            <div class="image-upload-container">
+                                <div class="uploaded-images">
+                                    <div class="uploaded-image" id="profilePictureContainer">
+                                        <img src="" alt="Profile Picture" id="profilePicture">
+                                        <button type="button" class="remove-image" id="removeProfilePic" style="display: none;">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <button type="button" class="upload-btn" id="uploadProfilePicBtn">
+                                    <i class="fas fa-upload"></i>
+                                    Upload Profile Picture
+                                </button>
+                                <input type="file" id="profilePicInput" accept="image/*" style="display: none;">
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="form-submit" style="width: auto;">
+                            <i class="fas fa-save"></i>
+                            Save Changes
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>SEBS Marketplace</h3>
+                    <p style="color: #B0B7C3; margin-bottom: 25px; line-height: 1.7;">The ultimate campus marketplace built by students, for students. Shop smart, sell fast, and make campus life easier.</p>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>University Campus, Accra, Ghana</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+233 54 234 3069</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>support@sebsmarketplace.com</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="#categories"><i class="fas fa-chevron-right"></i> Categories</a></li>
+                        <li><a href="#products"><i class="fas fa-chevron-right"></i> Products</a></li>
+                        <li><a href="#food"><i class="fas fa-chevron-right"></i> Food Delivery</a></li>
+                        <li><a href="#sell"><i class="fas fa-chevron-right"></i> Sell on SEBS</a></li>
+                    </ul>
+                </div>
+                
+                <!-- ADDED FROM SECOND CODE: Updated Popular Categories Section -->
+                <div class="footer-column">
+                    <h3>Popular Categories</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" data-category="Electronics"><i class="fas fa-chevron-right"></i> Electronics</a></li>
+                        <li><a href="#" data-category="Textbooks"><i class="fas fa-chevron-right"></i> Textbooks</a></li>
+                        <li><a href="#" data-category="Fashion"><i class="fas fa-chevron-right"></i> Fashion</a></li>
+                        <li><a href="#" data-category="Home & Dorm"><i class="fas fa-chevron-right"></i> Home & Dorm</a></li>
+                        <li><a href="#" data-category="Food & Snacks"><i class="fas fa-chevron-right"></i> Food & Snacks</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Connect With Us</h3>
+                    <p style="color: #B0B7C3; margin-bottom: 25px;">Follow us for campus deals, announcements, and student discounts.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 SEBS Marketplace. All rights reserved. <span class="highlight">Built by Students, for Students.</span></p>
+                <p style="margin-top: 10px;">University of Ghana Campus | Legon, Accra</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Data for the entire marketplace WITH UPDATED IMAGE URLs from second code
+        const marketplaceData = {
+            categories: [
+                {
+                    id: 1,
+                    name: "Electronics",
+                    icon: "fa-laptop",
+                    color: "#FF6B35",
+                    description: "Laptops, phones, gadgets, and accessories for your academic needs",
+                    productCount: 5,
+                    featured: true,
+                    banner: "https://images.unsplash.com/photo-1498049794561-7780e7231661?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80"
+                },
+                {
+                    id: 2,
+                    name: "Textbooks",
+                    icon: "fa-book",
+                    color: "#004E89",
+                    description: "New and used textbooks for all university courses",
+                    productCount: 5,
+                    featured: true,
+                    banner: "https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80"
+                },
+                {
+                    id: 3,
+                    name: "Fashion",
+                    icon: "fa-tshirt",
+                    color: "#00A896",
+                    description: "Campus wear, shoes, and accessories for students",
+                    productCount: 5,
+                    featured: true,
+                    banner: "https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80"
+                },
+                {
+                    id: 4,
+                    name: "Home & Dorm",
+                    icon: "fa-home",
+                    color: "#FFC107",
+                    description: "Everything for your dorm room and off-campus housing",
+                    productCount: 5,
+                    featured: true,
+                    banner: "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80"
+                },
+                {
+                    id: 5,
+                    name: "Beauty & Care",
+                    icon: "fa-spa",
+                    color: "#E83F6F",
+                    description: "Skincare, haircare, and beauty products for students",
+                    productCount: 5,
+                    featured: true,
+                    banner: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80"
+                },
+                {
+                    id: 6,
+                    name: "Food & Snacks",
+                    icon: "fa-utensils",
+                    color: "#20C997",
+                    description: "Snacks, beverages, and meal delivery services",
+                    productCount: 5,
+                    featured: true,
+                    banner: "https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80"
+                },
+                {
+                    id: 7,
+                    name: "Sneakers",
+                    icon: "fa-shoe-prints",
+                    color: "#6F42C1",
+                    description: "Latest sneakers and footwear for campus style",
+                    productCount: 5,
+                    featured: true,
+                    banner: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80"
+                },
+                {
+                    id: 8,
+                    name: "Services",
+                    icon: "fa-concierge-bell",
+                    color: "#FD7E14",
+                    description: "Tutoring, printing, laundry and other campus services",
+                    productCount: 5,
+                    featured: true,
+                    banner: "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80"
+                }
+            ],
+            
+            products: [
+                // Electronics - 5 products
+                {
+                    id: 1,
+                    name: "MacBook Air M1 2020",
+                    category: "Electronics",
+                    price: 4200,
+                    oldPrice: 4800,
+                    image: "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    badge: "Sale",
+                    delivery: "Free campus delivery",
+                    rating: 4.8,
+                    reviews: 124,
+                    description: "Lightweight MacBook Air with M1 chip, perfect for students. 8GB RAM, 256GB SSD, 13-inch Retina display. Excellent battery life for all-day classes.",
+                    specs: {
+                        "Condition": "Like New",
+                        "Warranty": "3 months",
+                        "Brand": "Apple",
+                        "Model": "MacBook Air M1",
+                        "Year": "2020"
+                    },
+                    seller: "TechGuru",
+                    location: "Legon Campus"
+                },
+                {
+                    id: 2,
+                    name: "Wireless Bluetooth Earbuds",
+                    category: "Electronics",
+                    price: 85,
+                    oldPrice: 120,
+                    image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    badge: "Sale",
+                    delivery: "₵5 delivery",
+                    rating: 4.3,
+                    reviews: 156,
+                    description: "Anker Soundcore wireless earbuds with 30-hour battery life. Noise cancellation, waterproof, perfect for gym and study sessions.",
+                    specs: {
+                        "Condition": "New",
+                        "Battery": "30 hours",
+                        "Brand": "Anker",
+                        "Waterproof": "IPX7",
+                        "Charging": "USB-C"
+                    },
+                    seller: "AudioTech",
+                    location: "Night Market"
+                },
+                {
+                    id: 3,
+                    name: "Graphing Calculator TI-84",
+                    category: "Electronics",
+                    price: 120,
+                    oldPrice: 180,
+                    image: "https://images.unsplash.com/photo-1587143185761-7d27d6e4d358?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    badge: "Essential",
+                    delivery: "₵8 delivery",
+                    rating: 4.7,
+                    reviews: 189,
+                    description: "Texas Instruments TI-84 Plus graphing calculator. Essential for engineering and math students. Includes case and charging cable.",
+                    specs: {
+                        "Condition": "Good",
+                        "Model": "TI-84 Plus",
+                        "Battery": "Rechargeable",
+                        "Functions": "Graphing",
+                        "Courses": "MATH, ENG"
+                    },
+                    seller: "CalcPro",
+                    location: "Engineering Block"
+                },
+                {
+                    id: 4,
+                    name: "Samsung Galaxy Tab S7",
+                    category: "Electronics",
+                    price: 1800,
+                    oldPrice: 2200,
+                    image: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    badge: "Sale",
+                    delivery: "Free delivery",
+                    rating: 4.5,
+                    reviews: 92,
+                    description: "Samsung Galaxy Tab S7 with S Pen. Perfect for note-taking and studying. 128GB storage, 6GB RAM, 11-inch display.",
+                    specs: {
+                        "Condition": "Excellent",
+                        "Storage": "128GB",
+                        "RAM": "6GB",
+                        "Screen": "11-inch",
+                        "Includes": "S Pen"
+                    },
+                    seller: "TabletPro",
+                    location: "Central Campus"
+                },
+                {
+                    id: 5,
+                    name: "Portable Power Bank",
+                    category: "Electronics",
+                    price: 65,
+                    oldPrice: 0,
+                    image: "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    badge: "New",
+                    delivery: "₵3 delivery",
+                    rating: 4.6,
+                    reviews: 78,
+                    description: "30000mAh power bank with fast charging. Charges multiple devices simultaneously. Perfect for students on the go.",
+                    specs: {
+                        "Condition": "New",
+                        "Capacity": "30000mAh",
+                        "Ports": "3",
+                        "Fast Charge": "Yes",
+                        "Brand": "Anker"
+                    },
+                    seller: "PowerTech",
+                    location: "Volta Hall"
+                },
+                
+                // Textbooks - 5 products
+                {
+                    id: 6,
+                    name: "Calculus Textbook 4th Edition",
+                    category: "Textbooks",
+                    price: 45,
+                    oldPrice: 85,
+                    image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    badge: "Sale",
+                    delivery: "Free pickup available",
+                    rating: 4.5,
+                    reviews: 89,
+                    description: "Essential Calculus textbook 4th edition by James Stewart. Used but in excellent condition with minimal highlighting. Required for MATH 101.",
+                    specs: {
+                        "Condition": "Good",
+                        "Edition": "4th",
+                        "Author": "James Stewart",
+                        "Course": "MATH 101",
+                        "Pages": "850"
+                    },
+                    seller: "BookWorm",
+                    location: "Balme Library"
+                },
+                {
+                    id: 7,
+                    name: "Chemistry Principles 8th Ed",
+                    category: "Textbooks",
+                    price: 55,
+                    oldPrice: 95,
+                    image: "https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    badge: "Essential",
+                    delivery: "Free pickup",
+                    rating: 4.4,
+                    reviews: 67,
+                    description: "Chemistry: Principles and Reactions 8th edition. Required for CHEM 101. Some highlighting but all pages intact.",
+                    specs: {
+                        "Condition": "Good",
+                        "Edition": "8th",
+                        "Author": "Masterton & Hurley",
+                        "Course": "CHEM 101",
+                        "Pages": "720"
+                    },
+                    seller: "ScienceBooks",
+                    location: "Science Block"
+                },
+                {
+                    id: 8,
+                    name: "Economics Textbook",
+                    category: "Textbooks",
+                    price: 40,
+                    oldPrice: 75,
+                    image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    badge: "Sale",
+                    delivery: "₵5 delivery",
+                    rating: 4.3,
+                    reviews: 54,
+                    description: "Principles of Economics 7th edition. Good condition, no torn pages. Perfect for ECON 101 students.",
+                    specs: {
+                        "Condition": "Good",
+                        "Edition": "7th",
+                        "Author": "Mankiw",
+                        "Course": "ECON 101",
+                        "Pages": "880"
+                    },
+                    seller: "EconStudent",
+                    location: "Business School"
+                },
+                {
+                    id: 9,
+                    name: "Psychology Textbook",
+                    category: "Textbooks",
+                    price: 50,
+                    oldPrice: 90,
+                    image: "https://images.unsplash.com/photo-1516979187457-637abb4f9353?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    badge: "Sale",
+                    delivery: "Free pickup",
+                    rating: 4.6,
+                    reviews: 42,
+                    description: "Psychology 12th edition by David Myers. Almost new condition, barely used. Required for PSYC 101.",
+                    specs: {
+                        "Condition": "Like New",
+                        "Edition": "12th",
+                        "Author": "David Myers",
+                        "Course": "PSYC 101",
+                        "Pages": "950"
+                    },
+                    seller: "PsychStudent",
+                    location: "Arts Block"
+                },
+                {
+                    id: 10,
+                    name: "Engineering Physics",
+                    category: "Textbooks",
+                    price: 60,
+                    oldPrice: 100,
+                    image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    badge: "Essential",
+                    delivery: "₵6 delivery",
+                    rating: 4.5,
+                    reviews: 38,
+                    description: "University Physics with Modern Physics 15th edition. Essential for engineering students. Good condition.",
+                    specs: {
+                        "Condition": "Good",
+                        "Edition": "15th",
+                        "Author": "Young & Freedman",
+                        "Course": "PHYS 101",
+                        "Pages": "1600"
+                    },
+                    seller: "EngStudent",
+                    location: "Engineering Block"
+                },
+                
+                // Fashion - 5 products
+                {
+                    id: 11,
+                    name: "Men's Formal Blazer",
+                    category: "Fashion",
+                    price: 120,
+                    oldPrice: 180,
+                    image: "https://images.unsplash.com/photo-1594938374193-9a21a3d2c3b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    badge: "Sale",
+                    delivery: "₵8 delivery",
+                    rating: 4.7,
+                    reviews: 89,
+                    description: "Black formal blazer for men, size 42. Perfect for presentations and formal events. Excellent condition.",
+                    specs: {
+                        "Condition": "Like New",
+                        "Size": "42",
+                        "Color": "Black",
+                        "Material": "Wool Blend",
+                        "Occasion": "Formal"
+                    },
+                    seller: "StyleHub",
+                    location: "Central Campus"
+                },
+                {
+                    id: 12,
+                    name: "Women's Casual Dress",
+                    category: "Fashion",
+                    price: 45,
+                    oldPrice: 70,
+                    image: "https://images.unsplash.com/photo-1566174053879-31528523f8ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    badge: "Sale",
+                    delivery: "₵6 delivery",
+                    rating: 4.4,
+                    reviews: 67,
+                    description: "Floral print casual dress, size medium. Perfect for campus events and casual outings. Worn only a few times.",
+                    specs: {
+                        "Condition": "Good",
+                        "Size": "Medium",
+                        "Color": "Floral",
+                        "Material": "Cotton",
+                        "Style": "Casual"
+                    },
+                    seller: "Fashionista",
+                    location: "Volta Hall"
+                },
+                {
+                    id: 13,
+                    name: "University Hoodie",
+                    category: "Fashion",
+                    price: 35,
+                    oldPrice: 50,
+                    image: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    badge: "Popular",
+                    delivery: "₵5 delivery",
+                    rating: 4.8,
+                    reviews: 124,
+                    description: "Official university hoodie, size large. Brand new with tags. Show your campus pride!",
+                    specs: {
+                        "Condition": "New",
+                        "Size": "Large",
+                        "Color": "Navy Blue",
+                        "Material": "Cotton Blend",
+                        "Official": "Yes"
+                    },
+                    seller: "CampusStore",
+                    location: "Student Center"
+                },
+                {
+                    id: 14,
+                    name: "Designer Handbag",
+                    category: "Fashion",
+                    price: 180,
+                    oldPrice: 250,
+                    image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    badge: "Sale",
+                    delivery: "₵10 delivery",
+                    rating: 4.9,
+                    reviews: 45,
+                    description: "Genuine leather handbag, barely used. Multiple compartments, perfect for carrying books and laptop.",
+                    specs: {
+                        "Condition": "Like New",
+                        "Brand": "LeatherCraft",
+                        "Color": "Brown",
+                        "Material": "Genuine Leather",
+                        "Compartments": "4"
+                    },
+                    seller: "LuxuryFinds",
+                    location: "Legon Campus"
+                },
+                {
+                    id: 15,
+                    name: "Casual Jeans",
+                    category: "Fashion",
+                    price: 40,
+                    oldPrice: 65,
+                    image: "https://images.unsplash.com/photo-1542272604-787c3835535d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    badge: "Sale",
+                    delivery: "₵6 delivery",
+                    rating: 4.5,
+                    reviews: 92,
+                    description: "Blue denim jeans, size 32/32. Good condition, no tears or stains. Perfect for everyday campus wear.",
+                    specs: {
+                        "Condition": "Good",
+                        "Size": "32/32",
+                        "Color": "Blue",
+                        "Material": "Denim",
+                        "Style": "Slim Fit"
+                    },
+                    seller: "DenimCo",
+                    location: "Night Market"
+                },
+                
+                // Home & Dorm - 5 products
+                {
+                    id: 16,
+                    name: "Mini Fridge for Dorm",
+                    category: "Home & Dorm",
+                    price: 320,
+                    oldPrice: 0,
+                    image: "https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    badge: "New",
+                    delivery: "Free delivery",
+                    rating: 4.6,
+                    reviews: 67,
+                    description: "Compact mini fridge perfect for dorm rooms. 1.7 cubic feet, energy efficient, with separate freezer compartment. Just 6 months old.",
+                    specs: {
+                        "Condition": "Excellent",
+                        "Capacity": "1.7 cu ft",
+                        "Energy Rating": "A+",
+                        "Color": "Black",
+                        "Age": "6 months"
+                    },
+                    seller: "DormEssentials",
+                    location: "Commonwealth Hall"
+                },
+                {
+                    id: 17,
+                    name: "Study Desk Lamp",
+                    category: "Home & Dorm",
+                    price: 25,
+                    oldPrice: 40,
+                    image: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    badge: "Sale",
+                    delivery: "₵4 delivery",
+                    rating: 4.4,
+                    reviews: 89,
+                    description: "Adjustable LED desk lamp with multiple brightness levels. Perfect for late-night study sessions.",
+                    specs: {
+                        "Condition": "Like New",
+                        "Type": "LED",
+                        "Brightness Levels": "5",
+                        "Color Temp": "Adjustable",
+                        "Power": "USB"
+                    },
+                    seller: "StudyGear",
+                    location: "Balme Library"
+                },
+                {
+                    id: 18,
+                    name: "Dorm Bedding Set",
+                    category: "Home & Dorm",
+                    price: 85,
+                    oldPrice: 120,
+                    image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    badge: "New",
+                    delivery: "Free delivery",
+                    rating: 4.7,
+                    reviews: 56,
+                    description: "Complete bedding set for dorm beds. Includes comforter, pillow cases, and sheets. Twin size, blue color.",
+                    specs: {
+                        "Condition": "New",
+                        "Size": "Twin",
+                        "Color": "Blue",
+                        "Material": "Microfiber",
+                        "Includes": "Full Set"
+                    },
+                    seller: "HomeComfort",
+                    location: "Sarbah Hall"
+                },
+                {
+                    id: 19,
+                    name: "Storage Organizer",
+                    category: "Home & Dorm",
+                    price: 30,
+                    oldPrice: 45,
+                    image: "https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    badge: "Sale",
+                    delivery: "₵5 delivery",
+                    rating: 4.5,
+                    reviews: 78,
+                    description: "6-cube storage organizer for dorm rooms. Easy to assemble, perfect for organizing books and supplies.",
+                    specs: {
+                        "Condition": "Good",
+                        "Cubes": "6",
+                        "Color": "White",
+                        "Material": "Fabric",
+                        "Assembly": "Required"
+                    },
+                    seller: "OrganizePro",
+                    location: "Central Campus"
+                },
+                {
+                    id: 20,
+                    name: "Electric Kettle",
+                    category: "Home & Dorm",
+                    price: 35,
+                    oldPrice: 50,
+                    image: "https://images.unsplash.com/photo-1514228742587-6b1558fcf93a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    badge: "Essential",
+                    delivery: "₵5 delivery",
+                    rating: 4.6,
+                    reviews: 92,
+                    description: "1.5L electric kettle with automatic shut-off. Perfect for making tea, coffee, or instant noodles in dorm.",
+                    specs: {
+                        "Condition": "Excellent",
+                        "Capacity": "1.5L",
+                        "Safety": "Auto Shut-off",
+                        "Color": "White",
+                        "Power": "1500W"
+                    },
+                    seller: "KitchenEssentials",
+                    location: "Volta Hall"
+                },
+                
+                // Beauty & Care - 5 products
+                {
+                    id: 21,
+                    name: "Organic Skin Care Set",
+                    category: "Beauty & Care",
+                    price: 65,
+                    oldPrice: 0,
+                    image: "https://images.unsplash.com/photo-1556228578-9c360e1d8d34?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    badge: "New",
+                    delivery: "Free delivery",
+                    rating: 4.9,
+                    reviews: 42,
+                    description: "Complete organic skincare set for students. Includes cleanser, toner, moisturizer, and sunscreen. All products are vegan and cruelty-free.",
+                    specs: {
+                        "Condition": "New",
+                        "Size": "Full Set",
+                        "Skin Type": "All",
+                        "Vegan": "Yes",
+                        "Cruelty-Free": "Yes"
+                    },
+                    seller: "NaturalGlow",
+                    location: "Sarbah Hall"
+                },
+                {
+                    id: 22,
+                    name: "Hair Dryer",
+                    category: "Beauty & Care",
+                    price: 45,
+                    oldPrice: 70,
+                    image: "https://images.unsplash.com/photo-1522338140262-f46f5913618a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    badge: "Sale",
+                    delivery: "₵6 delivery",
+                    rating: 4.4,
+                    reviews: 67,
+                    description: "Professional hair dryer with multiple heat settings. Lightweight and powerful, perfect for student use.",
+                    specs: {
+                        "Condition": "Good",
+                        "Wattage": "1800W",
+                        "Heat Settings": "3",
+                        "Speed Settings": "2",
+                        "Includes": "Concentrator"
+                    },
+                    seller: "HairCarePro",
+                    location: "Central Campus"
+                },
+                {
+                    id: 23,
+                    name: "Makeup Brush Set",
+                    category: "Beauty & Care",
+                    price: 35,
+                    oldPrice: 55,
+                    image: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    badge: "Sale",
+                    delivery: "₵4 delivery",
+                    rating: 4.7,
+                    reviews: 89,
+                    description: "Complete makeup brush set with 12 brushes. Synthetic bristles, cruelty-free. Comes with carrying case.",
+                    specs: {
+                        "Condition": "New",
+                        "Brushes": "12",
+                        "Bristles": "Synthetic",
+                        "Cruelty-Free": "Yes",
+                        "Includes": "Case"
+                    },
+                    seller: "BeautyBox",
+                    location: "Volta Hall"
+                },
+                {
+                    id: 24,
+                    name: "Perfume Collection",
+                    category: "Beauty & Care",
+                    price: 75,
+                    oldPrice: 120,
+                    image: "https://images.unsplash.com/photo-1541643600914-78b084683601?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    badge: "Sale",
+                    delivery: "₵8 delivery",
+                    rating: 4.8,
+                    reviews: 56,
+                    description: "Collection of 3 premium perfumes, each 30ml. Great scents for different occasions. Barely used.",
+                    specs: {
+                        "Condition": "Like New",
+                        "Quantity": "3 bottles",
+                        "Size": "30ml each",
+                        "Brand": "Various",
+                        "Usage": "Light"
+                    },
+                    seller: "ScentLover",
+                    location: "Legon Campus"
+                },
+                {
+                    id: 25,
+                    name: "Nail Care Kit",
+                    category: "Beauty & Care",
+                    price: 25,
+                    oldPrice: 40,
+                    image: "https://images.unsplash.com/photo-1607779097333-4f62f6c2ee9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    badge: "Sale",
+                    delivery: "₵4 delivery",
+                    rating: 4.5,
+                    reviews: 78,
+                    description: "Complete nail care kit with tools, polishes, and accessories. Perfect for maintaining nails at home.",
+                    specs: {
+                        "Condition": "New",
+                        "Items": "15+",
+                        "Polishes": "6 colors",
+                        "Tools": "Complete set",
+                        "Case": "Included"
+                    },
+                    seller: "NailStudio",
+                    location: "Student Center"
+                },
+                
+                // Sneakers - 5 products
+                {
+                    id: 26,
+                    name: "Nike Air Force 1 '07",
+                    category: "Sneakers",
+                    price: 280,
+                    oldPrice: 350,
+                    image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    badge: "Popular",
+                    delivery: "₵10 delivery",
+                    rating: 4.7,
+                    reviews: 203,
+                    description: "Classic Nike Air Force 1 sneakers in white. Size 42. Worn only a few times, looks brand new. Perfect campus style.",
+                    specs: {
+                        "Condition": "Like New",
+                        "Size": "42",
+                        "Color": "White",
+                        "Brand": "Nike",
+                        "Style": "Air Force 1"
+                    },
+                    seller: "SneakerHead",
+                    location: "Volta Hall"
+                },
+                {
+                    id: 27,
+                    name: "Adidas Ultraboost",
+                    category: "Sneakers",
+                    price: 320,
+                    oldPrice: 400,
+                    image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    badge: "Sale",
+                    delivery: "₵10 delivery",
+                    rating: 4.9,
+                    reviews: 156,
+                    description: "Adidas Ultraboost running shoes, size 43. Excellent comfort and support. Perfect for both sports and casual wear.",
+                    specs: {
+                        "Condition": "Excellent",
+                        "Size": "43",
+                        "Color": "Black/White",
+                        "Brand": "Adidas",
+                        "Type": "Running"
+                    },
+                    seller: "RunPro",
+                    location: "Sports Complex"
+                },
+                {
+                    id: 28,
+                    name: "Vans Old Skool",
+                    category: "Sneakers",
+                    price: 180,
+                    oldPrice: 240,
+                    image: "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    badge: "Sale",
+                    delivery: "₵8 delivery",
+                    rating: 4.6,
+                    reviews: 124,
+                    description: "Classic Vans Old Skool sneakers in black/white. Size 41. Great condition, perfect for casual campus style.",
+                    specs: {
+                        "Condition": "Good",
+                        "Size": "41",
+                        "Color": "Black/White",
+                        "Brand": "Vans",
+                        "Style": "Old Skool"
+                    },
+                    seller: "SkateShop",
+                    location: "Central Campus"
+                },
+                {
+                    id: 29,
+                    name: "Converse Chuck Taylor",
+                    category: "Sneakers",
+                    price: 150,
+                    oldPrice: 200,
+                    image: "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    badge: "Sale",
+                    delivery: "₵8 delivery",
+                    rating: 4.7,
+                    reviews: 189,
+                    description: "Converse Chuck Taylor All Star in black. Size 40. Timeless style, good condition with minimal wear.",
+                    specs: {
+                        "Condition": "Good",
+                        "Size": "40",
+                        "Color": "Black",
+                        "Brand": "Converse",
+                        "Style": "Chuck Taylor"
+                    },
+                    seller: "ClassicKicks",
+                    location: "Legon Campus"
+                },
+                {
+                    id: 30,
+                    name: "New Balance 574",
+                    category: "Sneakers",
+                    price: 220,
+                    oldPrice: 280,
+                    image: "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    badge: "Sale",
+                    delivery: "₵10 delivery",
+                    rating: 4.8,
+                    reviews: 92,
+                    description: "New Balance 574 sneakers in grey. Size 42. Excellent comfort and support, great for all-day wear on campus.",
+                    specs: {
+                        "Condition": "Like New",
+                        "Size": "42",
+                        "Color": "Grey",
+                        "Brand": "New Balance",
+                        "Model": "574"
+                    },
+                    seller: "ComfortKicks",
+                    location: "Student Center"
+                },
+                
+                // Services - 5 products
+                {
+                    id: 31,
+                    name: "Chemistry Lab Coat",
+                    category: "Services",
+                    price: 25,
+                    oldPrice: 40,
+                    image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    badge: "Essential",
+                    delivery: "Free pickup",
+                    rating: 4.4,
+                    reviews: 31,
+                    description: "Brand new chemistry lab coat, size medium. Required for CHEM 101 lab sessions. Never used, still with tags.",
+                    specs: {
+                        "Condition": "New",
+                        "Size": "Medium",
+                        "Material": "Cotton",
+                        "Color": "White",
+                        "Pockets": "2"
+                    },
+                    seller: "LabSupplies",
+                    location: "Science Block"
+                },
+                {
+                    id: 32,
+                    name: "Tutoring Services - Math",
+                    category: "Services",
+                    price: 30,
+                    oldPrice: 0,
+                    image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    badge: "Popular",
+                    delivery: "Online/In-person",
+                    rating: 4.9,
+                    reviews: 45,
+                    description: "Mathematics tutoring for all levels. Experienced tutor specializing in Calculus, Algebra, and Statistics. Flexible scheduling.",
+                    specs: {
+                        "Subject": "Mathematics",
+                        "Level": "All Levels",
+                        "Mode": "Hybrid",
+                        "Experience": "3+ years",
+                        "Availability": "Flexible"
+                    },
+                    seller: "MathPro",
+                    location: "Library"
+                },
+                {
+                    id: 33,
+                    name: "Printing Services",
+                    category: "Services",
+                    price: 5,
+                    oldPrice: 0,
+                    image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    badge: "Essential",
+                    delivery: "Campus pickup",
+                    rating: 4.7,
+                    reviews: 124,
+                    description: "High-quality printing services for assignments, projects, and thesis. Color and black/white options available.",
+                    specs: {
+                        "Type": "Document Printing",
+                        "Color": "Available",
+                        "Paper Size": "A4",
+                        "Turnaround": "Same day",
+                        "Location": "Library Annex"
+                    },
+                    seller: "PrintHub",
+                    location: "Library"
+                },
+                {
+                    id: 34,
+                    name: "Laundry Services",
+                    category: "Services",
+                    price: 20,
+                    oldPrice: 0,
+                    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    badge: "Popular",
+                    delivery: "Pickup & Delivery",
+                    rating: 4.6,
+                    reviews: 89,
+                    description: "Weekly laundry service for busy students. Wash, dry, and fold. Pickup and delivery to your dorm.",
+                    specs: {
+                        "Service": "Wash & Fold",
+                        "Pickup": "Yes",
+                        "Delivery": "Yes",
+                        "Turnaround": "24 hours",
+                        "Minimum": "5kg"
+                    },
+                    seller: "CleanCampus",
+                    location: "All Dorms"
+                },
+                {
+                    id: 35,
+                    name: "Room Cleaning",
+                    category: "Services",
+                    price: 40,
+                    oldPrice: 0,
+                    image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    badge: "Popular",
+                    delivery: "On-site",
+                    rating: 4.8,
+                    reviews: 67,
+                    description: "Professional dorm room cleaning service. Deep cleaning, organization, and sanitization. Perfect for end of semester.",
+                    specs: {
+                        "Service": "Deep Cleaning",
+                        "Duration": "2-3 hours",
+                        "Supplies": "Included",
+                        "Frequency": "One-time/Weekly",
+                        "Area": "Dorm Room"
+                    },
+                    seller: "CleanPro",
+                    location: "All Halls"
+                }
+            ],
+            
+            foodServices: [
+                {
+                    id: 1,
+                    name: "Jollof Rice & Chicken",
+                    vendor: "Mama's Kitchen",
+                    rating: 4.8,
+                    deliveryTime: "25-35 min",
+                    deliveryFee: "₵5",
+                    description: "Authentic Ghanaian jollof rice with fried chicken and salad. Perfect student meal.",
+                    badge: "Student Favorite",
+                    category: "Main Course",
+                    image: "https://images.unsplash.com/photo-1586190848861-99aa4a171e90?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                },
+                {
+                    id: 2,
+                    name: "Campus Burgers",
+                    vendor: "Burger Hub",
+                    rating: 4.5,
+                    deliveryTime: "20-30 min",
+                    deliveryFee: "₵4",
+                    description: "Juicy beef burgers with fries and drinks. Late-night delivery available.",
+                    badge: "Open Late",
+                    category: "Fast Food",
+                    image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                },
+                {
+                    id: 3,
+                    name: "Fresh Smoothie Bowls",
+                    vendor: "Green Bowl",
+                    rating: 4.9,
+                    deliveryTime: "15-25 min",
+                    deliveryFee: "₵6",
+                    description: "Healthy smoothie bowls with fresh fruits, granola, and honey. Vegan options available.",
+                    badge: "Healthy",
+                    category: "Breakfast",
+                    image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                },
+                {
+                    id: 4,
+                    name: "Fried Rice & Shrimp",
+                    vendor: "Asian Wok",
+                    rating: 4.6,
+                    deliveryTime: "30-40 min",
+                    deliveryFee: "₵7",
+                    description: "Special fried rice with shrimp, vegetables, and special sauce.",
+                    badge: "Popular",
+                    category: "Asian",
+                    image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                },
+                {
+                    id: 5,
+                    name: "Pizza Party Pack",
+                    vendor: "Pizza Palace",
+                    rating: 4.7,
+                    deliveryTime: "30-40 min",
+                    deliveryFee: "₵8",
+                    description: "Large pizza with 3 toppings, perfect for sharing with friends. Student discount available.",
+                    badge: "Party Favorite",
+                    category: "Italian",
+                    image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                }
+            ]
+        };
+
+        // DOM Elements
+        const navMenu = document.getElementById('navMenu');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainContent = document.getElementById('mainContent');
+        const categoryPage = document.getElementById('categoryPage');
+        const categoryHeader = document.getElementById('categoryHeader');
+        const profileSection = document.getElementById('profileSection');
+        const categoryProductsGrid = document.getElementById('categoryProductsGrid');
+        const categoryPageTitle = document.getElementById('categoryPageTitle');
+        const categoryPageDescription = document.getElementById('categoryPageDescription');
+        const backToHome = document.getElementById('backToHome');
+        const backToHomeFromProfile = document.getElementById('backToHomeFromProfile');
+        const productsGrid = document.getElementById('productsGrid');
+        const categoriesGrid = document.getElementById('categoriesGrid');
+        const foodGrid = document.getElementById('foodGrid');
+        const productModal = document.getElementById('productModal');
+        const productDetailContent = document.getElementById('productDetailContent');
+        const closeModal = document.getElementById('closeModal');
+        const sellModal = document.getElementById('sellModal');
+        const closeSellModal = document.getElementById('closeSellModal');
+        const sellForm = document.getElementById('sellForm');
+        const uploadImageBtn = document.getElementById('uploadImageBtn');
+        const imageUploadInput = document.getElementById('imageUploadInput');
+        const uploadedImagesContainer = document.getElementById('uploadedImagesContainer');
+        const sellBtn = document.getElementById('sellBtn');
+        const sellNowBtn = document.getElementById('sellNowBtn');
+        const signupBtnMain = document.getElementById('signupBtnMain');
+        const loginBtnMain = document.getElementById('loginBtnMain');
+        const loginIconBtn = document.getElementById('loginIconBtn');
+        const profileBtn = document.getElementById('profileBtn');
+        const profileLink = document.getElementById('profileLink');
+        const authButtons = document.getElementById('authButtons');
+        const authModal = document.getElementById('authModal');
+        const closeAuthModal = document.getElementById('closeAuthModal');
+        const authTabs = document.querySelectorAll('.auth-tab');
+        const authForms = document.querySelectorAll('.auth-form');
+        const loginForm = document.getElementById('loginForm');
+        const signupForm = document.getElementById('signupForm');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const homeLogo = document.getElementById('homeLogo');
+        const wishlistBtn = document.getElementById('wishlistBtn');
+        const cartBtn = document.getElementById('cartBtn');
+        const cartCount = document.querySelector('.cart-count');
+        const profileTabs = document.querySelectorAll('.profile-menu a[data-tab]');
+        const profileTabContents = document.querySelectorAll('.profile-tab');
+        const userName = document.getElementById('userName');
+        const userEmail = document.getElementById('userEmail');
+        const userAvatar = document.getElementById('userAvatar');
+        const orderCount = document.getElementById('orderCount');
+        const listingCount = document.getElementById('listingCount');
+        const ordersGrid = document.getElementById('ordersGrid');
+        const listingsGrid = document.getElementById('listingsGrid');
+        const wishlistGrid = document.getElementById('wishlistGrid');
+        const settingsForm = document.getElementById('settingsForm');
+        const settingsName = document.getElementById('settingsName');
+        const settingsEmail = document.getElementById('settingsEmail');
+        const settingsPhone = document.getElementById('settingsPhone');
+        const settingsCampus = document.getElementById('settingsCampus');
+        const profilePicture = document.getElementById('profilePicture');
+        const profilePictureContainer = document.getElementById('profilePictureContainer');
+        const removeProfilePic = document.getElementById('removeProfilePic');
+        const uploadProfilePicBtn = document.getElementById('uploadProfilePicBtn');
+        const profilePicInput = document.getElementById('profilePicInput');
+        const dashboardEmpty = document.getElementById('dashboardEmpty');
+        const dashboardContent = document.getElementById('dashboardContent');
+        const welcomeMessage = document.getElementById('welcomeMessage');
+        const pendingOrders = document.getElementById('pendingOrders');
+        const activeListings = document.getElementById('activeListings');
+        const recentActivity = document.getElementById('recentActivity');
+        const ordersEmpty = document.getElementById('ordersEmpty');
+        const listingsEmpty = document.getElementById('listingsEmpty');
+        const wishlistEmpty = document.getElementById('wishlistEmpty');
+        const settingsEmpty = document.getElementById('settingsEmpty');
+        const shopNowBtn = document.getElementById('shopNowBtn');
+        const createListingBtn = document.getElementById('createListingBtn');
+        const browseProductsBtn = document.getElementById('browseProductsBtn');
+        const loginSettingsBtn = document.getElementById('loginSettingsBtn');
+        const productTitle = document.getElementById('productTitle');
+        const productCategory = document.getElementById('productCategory');
+        const productPrice = document.getElementById('productPrice');
+        const productDescription = document.getElementById('productDescription');
+        const productCondition = document.getElementById('productCondition');
+        const productLocation = document.getElementById('productLocation');
+
+        // ADDED FROM SECOND CODE: New DOM elements
+        const searchResultsPage = document.getElementById('searchResultsPage');
+        const searchResultsGrid = document.getElementById('searchResultsGrid');
+        const searchResultsTitle = document.getElementById('searchResultsTitle');
+        const searchResultsDescription = document.getElementById('searchResultsDescription');
+        const noSearchResults = document.getElementById('noSearchResults');
+        const backToHomeFromSearch = document.getElementById('backToHomeFromSearch');
+        const sortSelect = document.getElementById('sortSelect');
+        const categorySortSelect = document.getElementById('categorySortSelect');
+        const footerCategoryLinks = document.querySelectorAll('.footer-links a[data-category]');
+
+        // Current state
+        let currentCategory = null;
+        let cartItems = [];
+        let user = {
+            isLoggedIn: false,
+            name: "",
+            email: "",
+            campus: "",
+            phone: "",
+            profilePic: "",
+            orders: [],
+            wishlist: [],
+            listings: [],
+            cart: []
+        };
+        
+        let uploadedProductImages = [];
+        let userProfilePicture = "";
+
+        // Initialize the marketplace
+        function initMarketplace() {
+            loadCategories();
+            loadProducts();
+            loadFoodServices();
+            loadUserFromStorage();
+            updateAuthUI();
+            setupEventListeners();
+        }
+
+        // Load user data from localStorage
+        function loadUserFromStorage() {
+            const savedUser = localStorage.getItem('sebs_user');
+            if (savedUser) {
+                const parsedUser = JSON.parse(savedUser);
+                user = { ...user, ...parsedUser };
+            }
+            
+            const savedCart = localStorage.getItem('sebs_cart');
+            if (savedCart) {
+                cartItems = JSON.parse(savedCart);
+                updateCartCount();
+            }
+        }
+
+        // Save user data to localStorage
+        function saveUserToStorage() {
+            localStorage.setItem('sebs_user', JSON.stringify(user));
+        }
+
+        // Save cart to localStorage
+        function saveCartToStorage() {
+            localStorage.setItem('sebs_cart', JSON.stringify(cartItems));
+        }
+
+        // Update UI based on authentication state
+        function updateAuthUI() {
+            if (user.isLoggedIn) {
+                // User is logged in
+                loginIconBtn.style.display = 'none';
+                profileBtn.style.display = 'flex';
+                profileLink.style.display = 'block';
+                authButtons.style.display = 'none';
+                
+                // Update user info in profile
+                userName.textContent = user.name || "User";
+                userEmail.textContent = user.email || "";
+                orderCount.textContent = user.orders.length;
+                listingCount.textContent = user.listings.length;
+                
+                // Update profile picture
+                if (user.profilePic) {
+                    userAvatar.innerHTML = `<img src="${user.profilePic}" alt="Profile Picture">`;
+                } else {
+                    userAvatar.innerHTML = '<i class="fas fa-user"></i>';
+                }
+                
+                // Update settings form
+                if (user.isLoggedIn) {
+                    settingsName.value = user.name || "";
+                    settingsEmail.value = user.email || "";
+                    settingsPhone.value = user.phone || "";
+                    settingsCampus.value = user.campus || "";
+                    
+                    if (user.profilePic) {
+                        profilePicture.src = user.profilePic;
+                        profilePicture.style.display = "block";
+                        removeProfilePic.style.display = "flex";
+                    } else {
+                        profilePicture.style.display = "none";
+                        removeProfilePic.style.display = "none";
+                    }
+                }
+                
+                // Show/hide empty states
+                updateProfileEmptyStates();
+                
+            } else {
+                // User is not logged in
+                loginIconBtn.style.display = 'flex';
+                profileBtn.style.display = 'none';
+                profileLink.style.display = 'none';
+                authButtons.style.display = 'flex';
+                
+                // Reset profile info
+                userName.textContent = "Guest User";
+                userEmail.textContent = "Please login to view profile";
+                userAvatar.innerHTML = '<i class="fas fa-user"></i>';
+                orderCount.textContent = "0";
+                listingCount.textContent = "0";
+                
+                // Show empty states
+                dashboardEmpty.style.display = "block";
+                dashboardContent.style.display = "none";
+                ordersEmpty.style.display = "block";
+                ordersGrid.style.display = "none";
+                listingsEmpty.style.display = "block";
+                listingsGrid.style.display = "none";
+                wishlistEmpty.style.display = "block";
+                wishlistGrid.style.display = "none";
+                settingsEmpty.style.display = "block";
+                settingsForm.style.display = "none";
+            }
+        }
+
+        // Update profile empty states
+        function updateProfileEmptyStates() {
+            if (!user.isLoggedIn) return;
+            
+            // Dashboard
+            dashboardEmpty.style.display = "none";
+            dashboardContent.style.display = "block";
+            welcomeMessage.textContent = `Welcome back, ${user.name}!`;
+            
+            const pendingOrdersCount = user.orders.filter(order => order.status === "Pending").length;
+            pendingOrders.textContent = pendingOrdersCount;
+            activeListings.textContent = user.listings.length;
+            
+            // Recent activity
+            loadRecentActivity();
+            
+            // Orders
+            if (user.orders.length > 0) {
+                ordersEmpty.style.display = "none";
+                ordersGrid.style.display = "grid";
+                loadUserOrders();
+            } else {
+                ordersEmpty.style.display = "block";
+                ordersGrid.style.display = "none";
+            }
+            
+            // Listings
+            if (user.listings.length > 0) {
+                listingsEmpty.style.display = "none";
+                listingsGrid.style.display = "grid";
+                loadUserListings();
+            } else {
+                listingsEmpty.style.display = "block";
+                listingsGrid.style.display = "none";
+            }
+            
+            // Wishlist
+            if (user.wishlist.length > 0) {
+                wishlistEmpty.style.display = "none";
+                wishlistGrid.style.display = "grid";
+                loadUserWishlist();
+            } else {
+                wishlistEmpty.style.display = "block";
+                wishlistGrid.style.display = "none";
+            }
+            
+            // Settings
+            settingsEmpty.style.display = "none";
+            settingsForm.style.display = "block";
+        }
+
+        // Load recent activity
+        function loadRecentActivity() {
+            recentActivity.innerHTML = "";
+            
+            // Show recent orders (up to 3)
+            const recentOrders = user.orders.slice(0, 3);
+            
+            if (recentOrders.length === 0) {
+                recentActivity.innerHTML = `
+                    <div class="empty-state" style="padding: 20px;">
+                        <p>No recent activity. Start shopping or selling!</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            recentOrders.forEach(order => {
+                const orderCard = document.createElement('div');
+                orderCard.className = 'order-card';
+                orderCard.innerHTML = `
+                    <div class="order-header">
+                        <div class="order-id">${order.id}</div>
+                        <div class="order-status ${order.status === 'Delivered' ? 'status-delivered' : 'status-pending'}">${order.status}</div>
+                    </div>
+                    <div style="color: var(--gray); font-size: 14px;">Order Date: ${order.date}</div>
+                    <div style="font-weight: 600; margin-top: 10px;">Total: ₵${order.total}</div>
+                `;
+                recentActivity.appendChild(orderCard);
+            });
+        }
+
+        // Load categories to the homepage
+        function loadCategories() {
+            categoriesGrid.innerHTML = '';
+            marketplaceData.categories.forEach((category, index) => {
+                const categoryCard = document.createElement('div');
+                categoryCard.className = `category-card fade-in delay-${index % 5}`;
+                categoryCard.innerHTML = `
+                    <div class="category-icon" style="background-color: ${category.color}20; color: ${category.color};">
+                        <i class="fas ${category.icon}"></i>
+                    </div>
+                    <h3 class="category-name">${category.name}</h3>
+                    <span class="category-count">${category.productCount} items</span>
+                `;
+                categoryCard.addEventListener('click', () => openCategory(category));
+                categoriesGrid.appendChild(categoryCard);
+            });
+        }
+
+        // Load products to the homepage (featured products)
+        function loadProducts() {
+            productsGrid.innerHTML = '';
+            // Get first 8 products as featured
+            const featuredProducts = marketplaceData.products.slice(0, 8);
+            
+            featuredProducts.forEach((product, index) => {
+                const productCard = createProductCard(product, index);
+                productsGrid.appendChild(productCard);
+            });
+        }
+
+        // Create product card element - UPDATED with badge classes from second code
+        function createProductCard(product, index = 0) {
+            const productCard = document.createElement('div');
+            productCard.className = `product-card fade-in delay-${index % 5}`;
+            
+            // Determine badge class - UPDATED from second code
+            let badgeClass = '';
+            if (product.badge === 'Sale') badgeClass = 'sale';
+            else if (product.badge === 'New') badgeClass = 'new';
+            else if (product.badge === 'Popular') badgeClass = 'popular';
+            else if (product.badge === 'Essential') badgeClass = 'essential';
+            
+            productCard.innerHTML = `
+                ${product.badge ? `<div class="product-badge ${badgeClass}">${product.badge}</div>` : ''}
+                <div class="product-image">
+                    <img src="${product.image}" alt="${product.name}" class="product-img" onerror="this.src='https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">${product.name}</h3>
+                    <div class="product-price">
+                        ${product.oldPrice ? `<span class="product-price old">₵${product.oldPrice}</span>` : ''}
+                        ₵${product.price}
+                    </div>
+                    <div class="product-delivery">
+                        <i class="fas fa-shipping-fast"></i>
+                        <span>${product.delivery}</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="action-btn" onclick="addToWishlist(${product.id})">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <button class="add-to-cart" onclick="addToCart(${product.id})">
+                            <i class="fas fa-cart-plus"></i>
+                            Add to Cart
+                        </button>
+                        <button class="action-btn" onclick="viewProduct(${product.id})">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+            productCard.addEventListener('click', (e) => {
+                if (!e.target.closest('.product-actions')) {
+                    viewProduct(product.id);
+                }
+            });
+            return productCard;
+        }
+
+        // Load food services
+        function loadFoodServices() {
+            foodGrid.innerHTML = '';
+            marketplaceData.foodServices.forEach((food, index) => {
+                const foodCard = document.createElement('div');
+                foodCard.className = `food-card fade-in delay-${index % 5}`;
+                foodCard.innerHTML = `
+                    <div class="food-header">
+                        <h3 class="food-title">${food.name}</h3>
+                        <div class="food-vendor">
+                            <i class="fas fa-store"></i>
+                            <span>${food.vendor}</span>
+                            <span class="vendor-badge">${food.badge}</span>
+                        </div>
+                    </div>
+                    <div class="food-image">
+                        <img src="${food.image}" alt="${food.name}" class="food-img" onerror="this.src='https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
+                    </div>
+                    <div class="food-info">
+                        <p class="food-description">${food.description}</p>
+                        <div class="food-meta">
+                            <div class="delivery-time">
+                                <i class="fas fa-clock"></i>
+                                ${food.deliveryTime}
+                            </div>
+                            <div class="delivery-fee">
+                                <i class="fas fa-motorcycle"></i>
+                                ${food.deliveryFee}
+                            </div>
+                        </div>
+                        <button class="order-btn" onclick="orderFood(${food.id})">
+                            <i class="fas fa-shopping-bag"></i>
+                            Order Now
+                        </button>
+                    </div>
+                `;
+                foodGrid.appendChild(foodCard);
+            });
+        }
+
+        // Load user orders
+        function loadUserOrders() {
+            ordersGrid.innerHTML = '';
+            user.orders.forEach(order => {
+                const orderCard = document.createElement('div');
+                orderCard.className = 'order-card';
+                orderCard.innerHTML = `
+                    <div class="order-header">
+                        <div class="order-id">${order.id}</div>
+                        <div class="order-status ${order.status === 'Delivered' ? 'status-delivered' : 'status-pending'}">${order.status}</div>
+                    </div>
+                    <div style="color: var(--gray); font-size: 14px;">Order Date: ${order.date}</div>
+                    <div style="font-weight: 600; margin-top: 10px;">Total: ₵${order.total}</div>
+                    <div class="order-details">
+                        ${order.items.map(item => `
+                            <div class="order-item">
+                                <div class="order-item-image">
+                                    <img src="${item.image}" alt="${item.name}" onerror="this.src='https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
+                                </div>
+                                <div>
+                                    <div style="font-weight: 600;">${item.name}</div>
+                                    <div style="color: var(--primary);">₵${item.price}</div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                ordersGrid.appendChild(orderCard);
+            });
+        }
+
+        // Load user listings
+        function loadUserListings() {
+            listingsGrid.innerHTML = '';
+            user.listings.forEach(listing => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    ${listing.badge ? `<div class="product-badge ${listing.badge === 'Sale' ? 'sale' : listing.badge === 'New' ? 'new' : ''}">${listing.badge}</div>` : ''}
+                    <div class="product-image">
+                        <img src="${listing.image}" alt="${listing.name}" class="product-img" onerror="this.src='https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">${listing.name}</h3>
+                        <div class="product-price">₵${listing.price}</div>
+                        <div class="product-delivery">
+                            <i class="fas fa-shipping-fast"></i>
+                            <span>${listing.delivery}</span>
+                        </div>
+                        <div style="display: flex; gap: 10px; margin-top: 15px;">
+                            <button class="add-to-cart" style="flex: 1;" onclick="editListing('${listing.id}')">
+                                <i class="fas fa-edit"></i>
+                                Edit
+                            </button>
+                            <button class="action-btn" onclick="deleteListing('${listing.id}')">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                listingsGrid.appendChild(productCard);
+            });
+        }
+
+        // Load user wishlist
+        function loadUserWishlist() {
+            wishlistGrid.innerHTML = '';
+            user.wishlist.forEach(productId => {
+                const product = marketplaceData.products.find(p => p.id === productId);
+                if (product) {
+                    const productCard = document.createElement('div');
+                    productCard.className = 'product-card';
+                    productCard.innerHTML = `
+                        ${product.badge ? `<div class="product-badge ${product.badge === 'Sale' ? 'sale' : product.badge === 'New' ? 'new' : ''}">${product.badge}</div>` : ''}
+                        <div class="product-image">
+                            <img src="${product.image}" alt="${product.name}" class="product-img" onerror="this.src='https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">${product.name}</h3>
+                            <div class="product-price">₵${product.price}</div>
+                            <div class="product-delivery">
+                                <i class="fas fa-shipping-fast"></i>
+                                <span>${product.delivery}</span>
+                            </div>
+                            <div class="product-actions">
+                                <button class="action-btn" onclick="removeFromWishlist(${product.id})">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                                <button class="add-to-cart" onclick="addToCart(${product.id})">
+                                    <i class="fas fa-cart-plus"></i>
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    wishlistGrid.appendChild(productCard);
+                }
+            });
+        }
+
+        // Open category page
+        function openCategory(category) {
+            currentCategory = category;
+            
+            // Update category page title and description
+            categoryPageTitle.textContent = category.name;
+            categoryPageDescription.textContent = category.description;
+            
+            // Set category banner
+            if (category.banner) {
+                categoryHeader.style.background = `linear-gradient(rgba(26, 26, 46, 0.7), rgba(26, 26, 46, 0.8)), url('${category.banner}')`;
+                categoryHeader.style.backgroundSize = 'cover';
+                categoryHeader.style.backgroundPosition = 'center';
+            }
+            
+            // Load category products
+            loadCategoryProducts();
+            
+            // Show category page, hide main content
+            mainContent.style.display = 'none';
+            categoryPage.style.display = 'block';
+            profileSection.style.display = 'none';
+            searchResultsPage.style.display = 'none';
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // Load products for a specific category
+        function loadCategoryProducts() {
+            categoryProductsGrid.innerHTML = '';
+            
+            // Filter products by category
+            const categoryProducts = marketplaceData.products.filter(
+                product => product.category === currentCategory.name
+            );
+            
+            // Show products for this category
+            categoryProducts.forEach(product => {
+                const productCard = createProductCard(product);
+                categoryProductsGrid.appendChild(productCard);
+            });
+        }
+
+        // ADDED FROM SECOND CODE: Perform search function
+        function performSearch(query) {
+            const searchQuery = query.trim().toLowerCase();
+            
+            if (!searchQuery) {
+                showNotification("Please enter a search term");
+                return;
+            }
+            
+            // Filter products based on search query
+            const searchResults = marketplaceData.products.filter(product => {
+                return product.name.toLowerCase().includes(searchQuery) ||
+                       product.description.toLowerCase().includes(searchQuery) ||
+                       product.category.toLowerCase().includes(searchQuery) ||
+                       product.seller.toLowerCase().includes(searchQuery);
+            });
+            
+            // Update search results page
+            searchResultsTitle.textContent = `Search: "${query}"`;
+            searchResultsDescription.textContent = `${searchResults.length} product${searchResults.length !== 1 ? 's' : ''} found`;
+            
+            // Clear previous results
+            searchResultsGrid.innerHTML = '';
+            
+            // Display results
+            if (searchResults.length === 0) {
+                noSearchResults.style.display = 'block';
+                searchResultsGrid.style.display = 'none';
+            } else {
+                noSearchResults.style.display = 'none';
+                searchResultsGrid.style.display = 'grid';
+                
+                searchResults.forEach((product, index) => {
+                    const productCard = createProductCard(product, index);
+                    searchResultsGrid.appendChild(productCard);
+                });
+            }
+            
+            // Show search results page
+            mainContent.style.display = 'none';
+            categoryPage.style.display = 'none';
+            profileSection.style.display = 'none';
+            searchResultsPage.style.display = 'block';
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // View product details
+        function viewProduct(productId) {
+            const product = marketplaceData.products.find(p => p.id === productId);
+            
+            if (!product) return;
+            
+            productDetailContent.innerHTML = `
+                <div class="product-gallery">
+                    <div class="product-main-image">
+                        <img src="${product.image}" alt="${product.name}" onerror="this.src='https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
+                    </div>
+                    <div class="product-thumbnails">
+                        <div class="thumbnail active">
+                            <img src="${product.image}" alt="${product.name}" onerror="this.src='https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
+                        </div>
+                        <div class="thumbnail">
+                            <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Product alternate view">
+                        </div>
+                        <div class="thumbnail">
+                            <img src="https://images.unsplash.com/photo-1556656793-08538906a9f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Product in use">
+                        </div>
+                    </div>
+                </div>
+                <div class="product-details">
+                    <h1 class="product-detail-title">${product.name}</h1>
+                    <div class="product-rating">
+                        <div class="stars">
+                            ${'★'.repeat(Math.floor(product.rating))}${'☆'.repeat(5 - Math.floor(product.rating))}
+                        </div>
+                        <span class="review-count">${product.rating} (${product.reviews} reviews)</span>
+                    </div>
+                    <div class="product-price-detail">
+                        ${product.oldPrice ? `<span style="font-size: 24px; color: var(--gray); text-decoration: line-through; margin-right: 10px;">₵${product.oldPrice}</span>` : ''}
+                        ₵${product.price}
+                    </div>
+                    <p class="product-description">${product.description}</p>
+                    
+                    <div class="product-specs">
+                        <h3 style="margin-bottom: 15px; font-size: 20px;">Product Details</h3>
+                        ${Object.entries(product.specs).map(([key, value]) => `
+                            <div class="spec-item">
+                                <div class="spec-label">${key}:</div>
+                                <div class="spec-value">${value}</div>
+                            </div>
+                        `).join('')}
+                        <div class="spec-item">
+                            <div class="spec-label">Seller:</div>
+                            <div class="spec-value">${product.seller} (${product.location})</div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-actions-detail">
+                        <div class="quantity-selector">
+                            <button class="quantity-btn" id="decreaseQty">-</button>
+                            <span class="quantity" id="productQty">1</span>
+                            <button class="quantity-btn" id="increaseQty">+</button>
+                        </div>
+                        <button class="buy-now-btn" onclick="buyNow(${product.id})">
+                            <i class="fas fa-bolt"></i>
+                            Buy Now
+                        </button>
+                    </div>
+                    
+                    <div style="margin-top: 30px; display: flex; gap: 15px;">
+                        <button class="add-to-cart" style="flex: 1;" onclick="addToCart(${product.id})">
+                            <i class="fas fa-cart-plus"></i>
+                            Add to Cart
+                        </button>
+                        <button class="action-btn" style="width: 50px;" onclick="addToWishlist(${product.id})">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            // Add quantity controls
+            document.getElementById('increaseQty').addEventListener('click', () => {
+                const qtyEl = document.getElementById('productQty');
+                qtyEl.textContent = parseInt(qtyEl.textContent) + 1;
+            });
+            
+            document.getElementById('decreaseQty').addEventListener('click', () => {
+                const qtyEl = document.getElementById('productQty');
+                if (parseInt(qtyEl.textContent) > 1) {
+                    qtyEl.textContent = parseInt(qtyEl.textContent) - 1;
+                }
+            });
+            
+            // Show modal
+            productModal.style.display = 'flex';
+        }
+
+        // Open sell form
+        function openSellForm() {
+            if (!user.isLoggedIn) {
+                showNotification("Please login to sell products");
+                openAuthModal();
+                return;
+            }
+            
+            // Reset form
+            sellForm.reset();
+            uploadedProductImages = [];
+            uploadedImagesContainer.innerHTML = "";
+            
+            sellModal.style.display = 'flex';
+        }
+
+        // Open auth modal
+        function openAuthModal(tab = 'login') {
+            authModal.style.display = 'flex';
+            
+            // Set active tab
+            authTabs.forEach(t => t.classList.remove('active'));
+            authForms.forEach(f => f.classList.remove('active'));
+            
+            if (tab === 'login') {
+                document.querySelector('.auth-tab[data-tab="login"]').classList.add('active');
+                loginForm.classList.add('active');
+            } else {
+                document.querySelector('.auth-tab[data-tab="signup"]').classList.add('active');
+                signupForm.classList.add('active');
+            }
+        }
+
+        // Shopping cart functions
+        function updateCartCount() {
+            const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            saveCartToStorage();
+        }
+
+        function addToCart(productId) {
+            if (!user.isLoggedIn) {
+                showNotification("Please login to add items to cart");
+                openAuthModal();
+                return;
+            }
+            
+            const product = marketplaceData.products.find(p => p.id === productId);
+            if (!product) return;
+            
+            const existingItem = cartItems.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cartItems.push({
+                    id: productId,
+                    name: product.name,
+                    price: product.price,
+                    image: product.image,
+                    quantity: 1
+                });
+            }
+            
+            updateCartCount();
+            showNotification(`${product.name} added to cart!`);
+        }
+
+        function addToWishlist(productId) {
+            if (!user.isLoggedIn) {
+                showNotification("Please login to add to wishlist");
+                openAuthModal();
+                return;
+            }
+            
+            if (!user.wishlist.includes(productId)) {
+                user.wishlist.push(productId);
+                saveUserToStorage();
+                showNotification("Added to wishlist!");
+                
+                // Update wishlist display if visible
+                if (wishlistGrid.innerHTML) {
+                    loadUserWishlist();
+                }
+                
+                updateProfileEmptyStates();
+            } else {
+                showNotification("Already in wishlist!");
+            }
+        }
+
+        function removeFromWishlist(productId) {
+            user.wishlist = user.wishlist.filter(id => id !== productId);
+            saveUserToStorage();
+            showNotification("Removed from wishlist");
+            loadUserWishlist();
+            updateProfileEmptyStates();
+        }
+
+        function buyNow(productId) {
+            if (!user.isLoggedIn) {
+                showNotification("Please login to purchase");
+                openAuthModal();
+                return;
+            }
+            
+            const product = marketplaceData.products.find(p => p.id === productId);
+            if (!product) return;
+            
+            // Create order
+            const orderId = `ORD-${Date.now()}`;
+            const orderDate = new Date().toISOString().split('T')[0];
+            
+            const newOrder = {
+                id: orderId,
+                date: orderDate,
+                status: "Pending",
+                total: product.price,
+                items: [{
+                    name: product.name,
+                    price: product.price,
+                    image: product.image
+                }]
+            };
+            
+            user.orders.unshift(newOrder);
+            saveUserToStorage();
+            
+            showNotification(`Order placed successfully! Order ID: ${orderId}`);
+            
+            // Update profile
+            updateProfileEmptyStates();
+            
+            // Close modal
+            productModal.style.display = 'none';
+        }
+
+        function orderFood(foodId) {
+            if (!user.isLoggedIn) {
+                showNotification("Please login to order food");
+                openAuthModal();
+                return;
+            }
+            
+            const food = marketplaceData.foodServices.find(f => f.id === foodId);
+            if (!food) return;
+            
+            // Create food order
+            const orderId = `FOOD-${Date.now()}`;
+            const orderDate = new Date().toISOString().split('T')[0];
+            
+            const newOrder = {
+                id: orderId,
+                date: orderDate,
+                status: "Preparing",
+                total: 0, // Food pricing would be calculated separately
+                items: [{
+                    name: food.name,
+                    price: 0, // Placeholder
+                    image: food.image,
+                    vendor: food.vendor
+                }]
+            };
+            
+            user.orders.unshift(newOrder);
+            saveUserToStorage();
+            
+            showNotification(`${food.name} ordered from ${food.vendor}! Delivery in ${food.deliveryTime}`);
+            
+            // Update profile
+            updateProfileEmptyStates();
+        }
+
+        function editListing(listingId) {
+            showNotification("Edit feature would open here");
+            // In a real app, this would open edit form with listing data
+        }
+
+        function deleteListing(listingId) {
+            user.listings = user.listings.filter(listing => listing.id !== listingId);
+            saveUserToStorage();
+            showNotification("Listing deleted");
+            loadUserListings();
+            updateProfileEmptyStates();
+        }
+
+        // User authentication functions
+        function login(email, password) {
+            // In a real app, this would validate with server
+            // For demo purposes, we'll just set the user as logged in
+            
+            if (!email || !password) {
+                showNotification("Please enter email and password");
+                return false;
+            }
+            
+            user.isLoggedIn = true;
+            user.email = email;
+            user.name = email.split('@')[0]; // Simple name from email
+            user.campus = "University of Ghana, Legon"; // Default
+            
+            saveUserToStorage();
+            updateAuthUI();
+            
+            showNotification(`Welcome back, ${user.name}!`);
+            authModal.style.display = 'none';
+            
+            return true;
+        }
+
+        function signup(name, email, password, campus) {
+            // In a real app, this would create account on server
+            // For demo purposes, we'll just set the user as logged in
+            
+            if (!name || !email || !password || !campus) {
+                showNotification("Please fill all fields");
+                return false;
+            }
+            
+            if (password.length < 6) {
+                showNotification("Password must be at least 6 characters");
+                return false;
+            }
+            
+            user.isLoggedIn = true;
+            user.name = name;
+            user.email = email;
+            user.campus = campus;
+            user.orders = [];
+            user.wishlist = [];
+            user.listings = [];
+            
+            saveUserToStorage();
+            updateAuthUI();
+            
+            showNotification(`Account created successfully! Welcome to SEBS, ${name}!`);
+            authModal.style.display = 'none';
+            
+            return true;
+        }
+
+        function logout() {
+            user.isLoggedIn = false;
+            saveUserToStorage();
+            updateAuthUI();
+            showNotification("Logged out successfully");
+            
+            // Return to home page
+            mainContent.style.display = 'block';
+            categoryPage.style.display = 'none';
+            profileSection.style.display = 'none';
+            searchResultsPage.style.display = 'none';
+        }
+
+        // Show notification
+        function showNotification(message) {
+            // Remove existing notification
+            const existingNotification = document.querySelector('.notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+            
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 3000);
+        }
+
+        // Handle image upload for product listing
+        function handleImageUpload(files) {
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                
+                // Check if image
+                if (!file.type.startsWith('image/')) {
+                    showNotification("Please upload image files only");
+                    continue;
+                }
+                
+                // Check file size (5MB limit)
+                if (file.size > 5 * 1024 * 1024) {
+                    showNotification("Image size should be less than 5MB");
+                    continue;
+                }
+                
+                // Create preview
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const imageUrl = e.target.result;
+                    uploadedProductImages.push(imageUrl);
+                    
+                    // Add to preview container
+                    const uploadedImage = document.createElement('div');
+                    uploadedImage.className = 'uploaded-image';
+                    uploadedImage.innerHTML = `
+                        <img src="${imageUrl}" alt="Product image">
+                        <button type="button" class="remove-image" onclick="removeUploadedImage(${uploadedProductImages.length - 1})">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    `;
+                    uploadedImagesContainer.appendChild(uploadedImage);
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function removeUploadedImage(index) {
+            uploadedProductImages.splice(index, 1);
+            
+            // Re-render previews
+            uploadedImagesContainer.innerHTML = '';
+            uploadedProductImages.forEach((imageUrl, idx) => {
+                const uploadedImage = document.createElement('div');
+                uploadedImage.className = 'uploaded-image';
+                uploadedImage.innerHTML = `
+                    <img src="${imageUrl}" alt="Product image">
+                    <button type="button" class="remove-image" onclick="removeUploadedImage(${idx})">
+                        <i class="fas fa-times"></i>
+                    </button>
+                `;
+                uploadedImagesContainer.appendChild(uploadedImage);
+            });
+        }
+
+        // Handle profile picture upload
+        function handleProfilePicUpload(file) {
+            if (!file.type.startsWith('image/')) {
+                showNotification("Please upload an image file");
+                return;
+            }
+            
+            if (file.size > 5 * 1024 * 1024) {
+                showNotification("Image size should be less than 5MB");
+                return;
+            }
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                userProfilePicture = e.target.result;
+                user.profilePic = userProfilePicture;
+                
+                profilePicture.src = userProfilePicture;
+                profilePicture.style.display = "block";
+                removeProfilePic.style.display = "flex";
+                
+                // Update avatar
+                userAvatar.innerHTML = `<img src="${userProfilePicture}" alt="Profile Picture">`;
+                
+                saveUserToStorage();
+                showNotification("Profile picture updated!");
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function removeProfilePicture() {
+            userProfilePicture = "";
+            user.profilePic = "";
+            
+            profilePicture.style.display = "none";
+            removeProfilePic.style.display = "none";
+            
+            // Update avatar
+            userAvatar.innerHTML = '<i class="fas fa-user"></i>';
+            
+            saveUserToStorage();
+            showNotification("Profile picture removed");
+        }
+
+        // Setup all event listeners - UPDATED with features from second code
+        function setupEventListeners() {
+            // Mobile menu toggle
+            mobileMenuBtn.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+
+            // Close modals
+            closeModal.addEventListener('click', () => {
+                productModal.style.display = 'none';
+            });
+
+            closeSellModal.addEventListener('click', () => {
+                sellModal.style.display = 'none';
+            });
+
+            closeAuthModal.addEventListener('click', () => {
+                authModal.style.display = 'none';
+            });
+
+            // Close modals when clicking outside
+            window.addEventListener('click', (e) => {
+                if (e.target === productModal) {
+                    productModal.style.display = 'none';
+                }
+                if (e.target === sellModal) {
+                    sellModal.style.display = 'none';
+                }
+                if (e.target === authModal) {
+                    authModal.style.display = 'none';
+                }
+            });
+
+            // Back to home from category page
+            backToHome.addEventListener('click', (e) => {
+                e.preventDefault();
+                showHomePage();
+            });
+
+            // Back to home from search results - ADDED FROM SECOND CODE
+            backToHomeFromSearch.addEventListener('click', (e) => {
+                e.preventDefault();
+                showHomePage();
+            });
+
+            // Back to home from profile
+            backToHomeFromProfile.addEventListener('click', (e) => {
+                e.preventDefault();
+                showHomePage();
+            });
+
+            // Home logo
+            homeLogo.addEventListener('click', (e) => {
+                e.preventDefault();
+                showHomePage();
+            });
+
+            // ADDED FROM SECOND CODE: Search functionality
+            document.querySelector('.search-btn').addEventListener('click', () => {
+                const query = document.querySelector('.search-input').value;
+                if (query.trim()) {
+                    performSearch(query);
+                }
+            });
+
+            // ADDED FROM SECOND CODE: Enter key in search
+            document.querySelector('.search-input').addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    const query = document.querySelector('.search-input').value;
+                    if (query.trim()) {
+                        performSearch(query);
+                    }
+                }
+            });
+
+            // Sell buttons
+            sellBtn.addEventListener('click', openSellForm);
+            sellNowBtn.addEventListener('click', openSellForm);
+
+            // Sell form submission
+            sellForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                if (!user.isLoggedIn) {
+                    showNotification("Please login to list products");
+                    openAuthModal();
+                    return;
+                }
+                
+                if (uploadedProductImages.length === 0) {
+                    showNotification("Please upload at least one product image");
+                    return;
+                }
+                
+                // Create new product listing
+                const newProductId = `USER-${Date.now()}`;
+                const newListing = {
+                    id: newProductId,
+                    name: productTitle.value,
+                    category: productCategory.value,
+                    price: parseInt(productPrice.value),
+                    description: productDescription.value,
+                    condition: productCondition.value,
+                    location: productLocation.value,
+                    image: uploadedProductImages[0], // Use first image as main
+                    badge: "New",
+                    delivery: "Campus pickup",
+                    seller: user.name,
+                    rating: 0,
+                    reviews: 0,
+                    specs: {
+                        "Condition": productCondition.value,
+                        "Seller": user.name,
+                        "Location": productLocation.value
+                    }
+                };
+                
+                // Add to user's listings
+                user.listings.unshift(newListing);
+                saveUserToStorage();
+                
+                // Close modal and reset form
+                sellModal.style.display = 'none';
+                sellForm.reset();
+                uploadedProductImages = [];
+                uploadedImagesContainer.innerHTML = "";
+                
+                showNotification("Product listed successfully!");
+                
+                // Update profile
+                updateProfileEmptyStates();
+                
+                // Add to marketplace data for display in category
+                // In a real app, this would be sent to server
+                const marketplaceProduct = {
+                    ...newListing,
+                    id: marketplaceData.products.length + 1,
+                    rating: 4.5,
+                    reviews: 0
+                };
+                marketplaceData.products.unshift(marketplaceProduct);
+                
+                // Update category count
+                const category = marketplaceData.categories.find(c => c.name === newListing.category);
+                if (category) {
+                    category.productCount += 1;
+                    loadCategories(); // Refresh category counts
+                }
+            });
+
+            // Image upload
+            uploadImageBtn.addEventListener('click', () => {
+                imageUploadInput.click();
+            });
+            
+            imageUploadInput.addEventListener('change', (e) => {
+                handleImageUpload(e.target.files);
+                e.target.value = ''; // Reset input
+            });
+
+            // Profile picture upload
+            uploadProfilePicBtn.addEventListener('click', () => {
+                profilePicInput.click();
+            });
+            
+            profilePicInput.addEventListener('change', (e) => {
+                if (e.target.files.length > 0) {
+                    handleProfilePicUpload(e.target.files[0]);
+                    e.target.value = ''; // Reset input
+                }
+            });
+            
+            removeProfilePic.addEventListener('click', removeProfilePicture);
+
+            // Authentication buttons
+            signupBtnMain.addEventListener('click', () => openAuthModal('signup'));
+            loginBtnMain.addEventListener('click', () => openAuthModal('login'));
+            loginIconBtn.addEventListener('click', () => openAuthModal('login'));
+            profileBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (!user.isLoggedIn) {
+                    openAuthModal('login');
+                } else {
+                    mainContent.style.display = 'none';
+                    categoryPage.style.display = 'none';
+                    profileSection.style.display = 'block';
+                    searchResultsPage.style.display = 'none';
+                    window.scrollTo(0, 0);
+                }
+            });
+
+            // Auth tabs switching
+            authTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const tabId = tab.getAttribute('data-tab');
+                    
+                    authTabs.forEach(t => t.classList.remove('active'));
+                    authForms.forEach(f => f.classList.remove('active'));
+                    
+                    tab.classList.add('active');
+                    document.getElementById(tabId + 'Form').classList.add('active');
+                });
+            });
+
+            // Login form submission
+            loginForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const email = document.getElementById('loginEmail').value;
+                const password = document.getElementById('loginPassword').value;
+                login(email, password);
+            });
+
+            // Signup form submission
+            signupForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = document.getElementById('signupName').value;
+                const email = document.getElementById('signupEmail').value;
+                const password = document.getElementById('signupPassword').value;
+                const confirmPassword = document.getElementById('signupConfirmPassword').value;
+                const campus = document.getElementById('signupCampus').value;
+                
+                if (password !== confirmPassword) {
+                    showNotification("Passwords do not match");
+                    return;
+                }
+                
+                signup(name, email, password, campus);
+            });
+
+            // Logout button
+            logoutBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                logout();
+            });
+
+            // Profile tab switching
+            profileTabs.forEach(tab => {
+                tab.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const tabId = tab.getAttribute('data-tab');
+                    
+                    // Update active tab
+                    profileTabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    
+                    // Show corresponding content
+                    profileTabContents.forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    document.getElementById(tabId + 'Tab').classList.add('active');
+                });
+            });
+
+            // Settings form
+            settingsForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                user.name = settingsName.value;
+                user.email = settingsEmail.value;
+                user.phone = settingsPhone.value;
+                user.campus = settingsCampus.value;
+                
+                saveUserToStorage();
+                updateAuthUI();
+                
+                showNotification("Profile updated successfully!");
+            });
+
+            // Empty state buttons
+            shopNowBtn.addEventListener('click', () => {
+                showHomePage();
+                document.querySelector('a[href="#products"]').click();
+            });
+            
+            createListingBtn.addEventListener('click', openSellForm);
+            browseProductsBtn.addEventListener('click', () => {
+                showHomePage();
+                document.querySelector('a[href="#products"]').click();
+            });
+            
+            loginSettingsBtn.addEventListener('click', () => openAuthModal('login'));
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href').substring(1);
+                    
+                    if (targetId === 'home') {
+                        showHomePage();
+                    } else if (targetId === 'profile') {
+                        if (!user.isLoggedIn) {
+                            openAuthModal();
+                        } else {
+                            mainContent.style.display = 'none';
+                            categoryPage.style.display = 'none';
+                            profileSection.style.display = 'block';
+                            searchResultsPage.style.display = 'none';
+                            window.scrollTo(0, 0);
+                        }
+                    } else {
+                        showHomePage();
+                        
+                        const targetElement = document.getElementById(targetId);
+                        if (targetElement) {
+                            targetElement.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }
+                    
+                    // Close mobile menu if open
+                    navMenu.classList.remove('active');
+                    
+                    // Update active nav link
+                    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
+                });
+            });
+
+            // ADDED FROM SECOND CODE: Sort functionality
+            if (sortSelect) {
+                sortSelect.addEventListener('change', () => {
+                    // In a full implementation, this would sort the products
+                    showNotification(`Sorting by: ${sortSelect.value}`);
+                });
+            }
+
+            if (categorySortSelect) {
+                categorySortSelect.addEventListener('change', () => {
+                    // In a full implementation, this would sort category products
+                    showNotification(`Sorting category by: ${categorySortSelect.value}`);
+                });
+            }
+
+            // ADDED FROM SECOND CODE: Footer category links
+            footerCategoryLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const categoryName = link.getAttribute('data-category');
+                    const category = marketplaceData.categories.find(c => c.name === categoryName);
+                    if (category) {
+                        openCategory(category);
+                    }
+                });
+            });
+
+            // Cart button
+            cartBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (!user.isLoggedIn) {
+                    showNotification("Please login to view cart");
+                    openAuthModal();
+                } else {
+                    showNotification(`You have ${cartItems.reduce((sum, item) => sum + item.quantity, 0)} items in cart`);
+                    // In a real app, this would open cart page
+                }
+            });
+            
+            // Wishlist button
+            wishlistBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (!user.isLoggedIn) {
+                    showNotification("Please login to view wishlist");
+                    openAuthModal();
+                } else {
+                    // Go to wishlist tab in profile
+                    mainContent.style.display = 'none';
+                    categoryPage.style.display = 'none';
+                    profileSection.style.display = 'block';
+                    searchResultsPage.style.display = 'none';
+                    
+                    // Activate wishlist tab
+                    profileTabs.forEach(t => t.classList.remove('active'));
+                    profileTabContents.forEach(c => c.classList.remove('active'));
+                    
+                    document.querySelector('.profile-menu a[data-tab="wishlist"]').classList.add('active');
+                    document.getElementById('wishlistTab').classList.add('active');
+                    
+                    window.scrollTo(0, 0);
+                }
+            });
+        }
+
+        // ADDED FROM SECOND CODE: Show home page function
+        function showHomePage() {
+            mainContent.style.display = 'block';
+            categoryPage.style.display = 'none';
+            profileSection.style.display = 'none';
+            searchResultsPage.style.display = 'none';
+            window.scrollTo(0, 0);
+            
+            // Update active nav link
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            document.querySelector('a[href="#home"]').classList.add('active');
+        }
+
+        // Make functions available globally for onclick handlers
+        window.addToCart = addToCart;
+        window.addToWishlist = addToWishlist;
+        window.removeFromWishlist = removeFromWishlist;
+        window.viewProduct = viewProduct;
+        window.buyNow = buyNow;
+        window.orderFood = orderFood;
+        window.editListing = editListing;
+        window.deleteListing = deleteListing;
+        window.removeUploadedImage = removeUploadedImage;
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', initMarketplace);
+    </script>
+</body>
+</html>
