@@ -227,6 +227,10 @@
             flex-shrink: 0;
         }
 
+        .mobile-nav-icons {
+            display: none;
+        }
+
         /* Hero Section */
         .hero {
             padding: 80px 0 60px;
@@ -1963,13 +1967,61 @@
                 flex-wrap: nowrap;
                 gap: 8px;
             }
-            
+
             .user-menu {
-                order: 2;
+                display: none;
+            }
+
+            .mobile-nav-icons {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .user-menu {
+                display: none !important;
+            }
+
+            .mobile-nav-icons {
+                display: none;
             }
         }
 
         @media (max-width: 576px) {
+            .user-menu {
+                display: none !important;
+            }
+
+            .mobile-nav-icons {
+                display: flex !important;
+                flex-wrap: wrap;
+                gap: 15px;
+                padding-top: 20px;
+                border-top: 1px solid var(--light-gray);
+                margin-top: 15px;
+            }
+
+            .mobile-icon {
+                flex: 1 0 calc(50% - 8px);
+                display: flex !important;
+                flex-direction: column;
+                gap: 8px;
+                padding: 15px;
+                height: auto;
+                border-radius: 10px;
+                background-color: var(--light-gray);
+            }
+
+            .mobile-icon span {
+                font-size: 12px;
+                font-weight: 600;
+                color: var(--dark);
+            }
+
+            .mobile-icon i {
+                font-size: 20px;
+            }
+
             .logo-text {
                 font-size: 20px;
             }
@@ -2515,6 +2567,26 @@
                 <a href="#food" class="nav-link">Food</a>
                 <a href="#sell" class="nav-link">Sell</a>
                 <a href="#profile" class="nav-link" id="profileLink" style="display: none;">Profile</a>
+                
+                <!-- Mobile Menu Icons -->
+                <div class="mobile-nav-icons">
+                    <a href="#" class="icon-btn mobile-icon" id="mobileWishlistBtn">
+                        <i class="far fa-heart"></i>
+                        <span>Wishlist</span>
+                    </a>
+                    <a href="#" class="icon-btn mobile-icon" id="mobileProfileBtn" style="display: none;">
+                        <i class="far fa-user"></i>
+                        <span>Profile</span>
+                    </a>
+                    <a href="#" class="icon-btn mobile-icon" id="mobileLoginBtn">
+                        <i class="far fa-user"></i>
+                        <span>Login</span>
+                    </a>
+                    <a href="#" class="icon-btn mobile-icon" id="mobileCartBtn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Cart</span>
+                    </a>
+                </div>
             </nav>
             
             <div class="header-actions">
@@ -4044,6 +4116,12 @@
                 profileLink.style.display = 'block';
                 authButtons.style.display = 'none';
                 
+                // Update mobile icons
+                const mobileLoginBtn = document.getElementById('mobileLoginBtn');
+                const mobileProfileBtn = document.getElementById('mobileProfileBtn');
+                if (mobileLoginBtn) mobileLoginBtn.style.display = 'none';
+                if (mobileProfileBtn) mobileProfileBtn.style.display = 'flex';
+                
                 // Update user info in profile
                 userName.textContent = user.name || "User";
                 userEmail.textContent = user.email || "";
@@ -4083,6 +4161,12 @@
                 profileBtn.style.display = 'none';
                 profileLink.style.display = 'none';
                 authButtons.style.display = 'flex';
+                
+                // Update mobile icons
+                const mobileLoginBtn = document.getElementById('mobileLoginBtn');
+                const mobileProfileBtn = document.getElementById('mobileProfileBtn');
+                if (mobileLoginBtn) mobileLoginBtn.style.display = 'flex';
+                if (mobileProfileBtn) mobileProfileBtn.style.display = 'none';
                 
                 // Reset profile info
                 userName.textContent = "Guest User";
@@ -5278,6 +5362,69 @@
                     window.scrollTo(0, 0);
                 }
             });
+
+            // Mobile Menu Icons Event Listeners
+            const mobileWishlistBtn = document.getElementById('mobileWishlistBtn');
+            const mobileCartBtn = document.getElementById('mobileCartBtn');
+            const mobileLoginBtn = document.getElementById('mobileLoginBtn');
+            const mobileProfileBtn = document.getElementById('mobileProfileBtn');
+
+            if (mobileWishlistBtn) {
+                mobileWishlistBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    navMenu.classList.remove('active');
+                    if (!user.isLoggedIn) {
+                        showNotification("Please login to view wishlist");
+                        openAuthModal();
+                    } else {
+                        mainContent.style.display = 'none';
+                        categoryPage.style.display = 'none';
+                        profileSection.style.display = 'block';
+                        searchResultsPage.style.display = 'none';
+                        
+                        profileTabs.forEach(t => t.classList.remove('active'));
+                        profileTabContents.forEach(c => c.classList.remove('active'));
+                        
+                        document.querySelector('.profile-menu a[data-tab="wishlist"]').classList.add('active');
+                        document.getElementById('wishlistTab').classList.add('active');
+                        
+                        window.scrollTo(0, 0);
+                    }
+                });
+            }
+
+            if (mobileCartBtn) {
+                mobileCartBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    navMenu.classList.remove('active');
+                    if (!user.isLoggedIn) {
+                        showNotification("Please login to view cart");
+                        openAuthModal();
+                    } else {
+                        showNotification(`You have ${cartItems.reduce((sum, item) => sum + item.quantity, 0)} items in cart`);
+                    }
+                });
+            }
+
+            if (mobileLoginBtn) {
+                mobileLoginBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    navMenu.classList.remove('active');
+                    openAuthModal('login');
+                });
+            }
+
+            if (mobileProfileBtn) {
+                mobileProfileBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    navMenu.classList.remove('active');
+                    mainContent.style.display = 'none';
+                    categoryPage.style.display = 'none';
+                    profileSection.style.display = 'block';
+                    searchResultsPage.style.display = 'none';
+                    window.scrollTo(0, 0);
+                });
+            }
         }
 
         function showHomePage() {
