@@ -68,6 +68,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: nowrap;
         }
 
         .logo {
@@ -221,6 +222,9 @@
             font-size: 24px;
             color: var(--dark);
             cursor: pointer;
+            padding: 8px;
+            margin: 0 10px 0 0;
+            flex-shrink: 0;
         }
 
         /* Hero Section */
@@ -1790,6 +1794,43 @@
         }
 
         @media (max-width: 992px) {
+            .header-content {
+                gap: 15px;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                order: -1;
+                flex-shrink: 0;
+            }
+
+            .logo {
+                flex: 1 0 auto;
+                margin: 0;
+            }
+
+            .logo-text {
+                font-size: 24px;
+            }
+
+            .logo-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+
+            .header-actions {
+                margin-left: auto;
+                flex-shrink: 0;
+            }
+
+            .sell-btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+
             .nav-menu {
                 display: none;
                 position: fixed;
@@ -1806,10 +1847,6 @@
             
             .nav-menu.active {
                 display: flex;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
             }
             
             .product-detail {
@@ -1923,7 +1960,8 @@
             }
             
             .header-content {
-                flex-wrap: wrap;
+                flex-wrap: nowrap;
+                gap: 8px;
             }
             
             .user-menu {
@@ -1933,13 +1971,44 @@
 
         @media (max-width: 576px) {
             .logo-text {
-                font-size: 26px;
+                font-size: 20px;
             }
             
             .logo-icon {
-                width: 40px;
-                height: 40px;
-                font-size: 18px;
+                width: 36px;
+                height: 36px;
+                font-size: 16px;
+            }
+
+            .logo-tagline {
+                font-size: 7px;
+            }
+
+            .header-content {
+                gap: 6px;
+                flex-wrap: nowrap;
+                padding: 5px 15px;
+            }
+
+            .mobile-menu-btn {
+                font-size: 20px;
+                padding: 6px;
+                margin: 0 4px 0 0;
+            }
+
+            .user-menu {
+                gap: 6px;
+            }
+
+            .icon-btn {
+                width: 38px;
+                height: 38px;
+                font-size: 16px;
+            }
+
+            .sell-btn {
+                padding: 8px 14px;
+                font-size: 12px;
             }
             
             .hero-text h1 {
@@ -2427,6 +2496,10 @@
     <!-- Header -->
     <header class="header">
         <div class="container header-content">
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
             <a href="#" class="logo" id="homeLogo">
                 <div class="logo-icon">S</div>
                 <div>
@@ -2463,9 +2536,6 @@
                 <button class="sell-btn" id="sellBtn">
                     <i class="fas fa-plus"></i>
                     Sell Now
-                </button>
-                <button class="mobile-menu-btn" id="mobileMenuBtn">
-                    <i class="fas fa-bars"></i>
                 </button>
             </div>
         </div>
