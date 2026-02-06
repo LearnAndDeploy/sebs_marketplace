@@ -103,6 +103,17 @@
             color: var(--primary);
         }
 
+        .logo-tagline {
+            font-family: 'Inter', sans-serif;
+            font-size: 10px;
+            font-weight: 500;
+            color: var(--gray);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-top: 2px;
+            line-height: 1.2;
+        }
+
         .nav-menu {
             display: flex;
             gap: 35px;
@@ -783,12 +794,14 @@
         }
 
         .food-image {
-            height: 180px;
+            height: 280px;
             width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            border-radius: var(--border-radius);
+            background-color: #f9f9f9;
         }
 
         .food-img {
@@ -973,7 +986,7 @@
             background-color: white;
             border-radius: var(--border-radius);
             width: 100%;
-            max-width: 900px;
+            max-width: 1000px;
             max-height: 90vh;
             overflow-y: auto;
             position: relative;
@@ -1010,7 +1023,7 @@
 
         .product-detail {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1.2fr 1fr;
             gap: 40px;
             padding: 40px;
         }
@@ -1021,7 +1034,7 @@
 
         .product-main-image {
             width: 100%;
-            height: 400px;
+            height: 500px;
             background-color: #f9f9f9;
             border-radius: var(--border-radius);
             display: flex;
@@ -2234,15 +2247,192 @@
         .delay-3 { animation-delay: 0.3s; }
         .delay-4 { animation-delay: 0.4s; }
         .delay-5 { animation-delay: 0.5s; }
+
+        /* About SEBS Modal Styles */
+        .about-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .about-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            max-width: 650px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: slideUp 0.4s ease;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 20px;
+        }
+
+        .modal-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary), var(--warning));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 35px;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        .modal-title {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--dark);
+            margin: 0;
+        }
+
+        .modal-title span {
+            color: var(--primary);
+        }
+
+        .modal-body {
+            color: var(--dark);
+            line-height: 1.8;
+        }
+
+        .modal-section {
+            margin-bottom: 25px;
+        }
+
+        .modal-section h3 {
+            color: var(--primary);
+            font-size: 18px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .modal-section h3::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+
+        .modal-section p {
+            color: #555;
+            font-size: 15px;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .close-modal-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: var(--gray);
+            cursor: pointer;
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: var(--light-gray);
+        }
+
+        .close-modal-btn:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: rotate(90deg);
+        }
+
+        .logo {
+            cursor: pointer;
+        }
+
+        .logo:hover .logo-icon {
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- About SEBS Modal -->
+    <div class="about-modal" id="aboutModal">
+        <div class="modal-content">
+            <button class="close-modal-btn" id="closeAboutModal">&times;</button>
+            <div class="modal-header">
+                <div class="modal-icon">S</div>
+                <h2 class="modal-title">About SE<span>BS</span></h2>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h3>The Problem</h3>
+                    <p>The rapid growth of mobile technology and digital platforms has transformed how people buy and sell goods and services, particularly among young populations such as university students. On university campuses, students often rely on informal networks, word-of-mouth, or scattered social media posts to access essential services such as food delivery, laundry, printing, tutoring, fashion, repairs, and other student-led businesses. These methods are often inefficient, unreliable, and time-consuming.</p>
+                </div>
+                <div class="modal-section">
+                    <h3>Our Solution</h3>
+                    <p>SEBS (Student E-Business Space) is a campus-based digital marketplace app designed specifically for students and service providers on the University of Cape Coast (UCC) campus. The app brings together multiple student entrepreneurs and campus businesses onto a single platform, enabling efficient buying, selling, and service exchange.</p>
+                </div>
+                <div class="modal-section">
+                    <h3>Market Need</h3>
+                    <p>SEBS addresses a real and existing problem on campus: students struggle to easily find trusted vendors for food, services, and products. At the same time, student entrepreneurs lack a structured digital platform to reach customers. The app bridges this gap efficiently, creating a win-win ecosystem for both buyers and sellers on campus.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Header -->
     <header class="header">
         <div class="container header-content">
             <a href="#" class="logo" id="homeLogo">
                 <div class="logo-icon">S</div>
-                <div class="logo-text">SE<span>BS</span></div>
+                <div>
+                    <div class="logo-text">SE<span>BS</span></div>
+                    <div class="logo-tagline">Student E-Business Space</div>
+                </div>
             </a>
             
             <nav class="nav-menu" id="navMenu">
@@ -3586,62 +3776,38 @@
                 {
                     id: 1,
                     name: "Jollof Rice & Chicken",
-                    vendor: "Mama's Kitchen",
+                    vendor: "Golden Plate Catering",
                     rating: 4.8,
                     deliveryTime: "25-35 min",
                     deliveryFee: "₵5",
-                    description: "Authentic Ghanaian jollof rice with fried chicken and salad. Perfect student meal.",
-                    badge: "Student Favorite",
+                    description: "Jollof rice with fried chicken and salad. Perfect student meal.",
+                    badge: "Campus Favorite",
                     category: "Main Course",
-                    image: "https://images.unsplash.com/photo-1586190848861-99aa4a171e90?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                    image: "pngtree-flavorful-jollof-rice-and-chicken-meal-png-image_19990185.png"
                 },
                 {
                     id: 2,
-                    name: "Campus Burgers",
-                    vendor: "Burger Hub",
-                    rating: 4.5,
-                    deliveryTime: "20-30 min",
+                    name: "Spaghetti One Time",
+                    vendor: "The Pasta Stop",
+                    rating: 4.9,
+                    deliveryTime: "15-25 min",
                     deliveryFee: "₵4",
-                    description: "Juicy beef burgers with fries and drinks. Late-night delivery available.",
-                    badge: "Open Late",
-                    category: "Fast Food",
-                    image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                    description: "Spaghetti served with a tomato and meat stew, topped with fresh sliced onions and peppers. Simple, affordable, and satisfying student meal.",
+                    badge: "Quick Bites",
+                    category: "Main Course",
+                    image: "photo.jpg"
                 },
                 {
                     id: 3,
-                    name: "Fresh Smoothie Bowls",
-                    vendor: "Green Bowl",
-                    rating: 4.9,
-                    deliveryTime: "15-25 min",
-                    deliveryFee: "₵6",
-                    description: "Healthy smoothie bowls with fresh fruits, granola, and honey. Vegan options available.",
-                    badge: "Healthy",
-                    category: "Breakfast",
-                    image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                },
-                {
-                    id: 4,
-                    name: "Fried Rice & Shrimp",
-                    vendor: "Asian Wok",
-                    rating: 4.6,
-                    deliveryTime: "30-40 min",
-                    deliveryFee: "₵7",
-                    description: "Special fried rice with shrimp, vegetables, and special sauce.",
-                    badge: "Popular",
-                    category: "Asian",
-                    image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                },
-                {
-                    id: 5,
-                    name: "Pizza Party Pack",
-                    vendor: "Pizza Palace",
+                    name: "Fried Rice with Chicken",
+                    vendor: "Wok Express",
                     rating: 4.7,
                     deliveryTime: "30-40 min",
-                    deliveryFee: "₵8",
-                    description: "Large pizza with 3 toppings, perfect for sharing with friends. Student discount available.",
-                    badge: "Party Favorite",
-                    category: "Italian",
-                    image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                    deliveryFee: "₵6",
+                    description: "Tasty fried rice with pieces of chicken, vegetables, and special seasoning. Perfect for sharing with friends on campus.",
+                    badge: "Group Winner",
+                    category: "Main Course",
+                    image: "OIP (2).webp"
                 }
             ]
         };
@@ -4689,6 +4855,25 @@
         function setupEventListeners() {
             mobileMenuBtn.addEventListener('click', () => {
                 navMenu.classList.toggle('active');
+            });
+
+            // About SEBS Modal Event Listeners
+            const aboutModal = document.getElementById('aboutModal');
+            const closeAboutModal = document.getElementById('closeAboutModal');
+            
+            homeLogo.addEventListener('click', (e) => {
+                e.preventDefault();
+                aboutModal.classList.add('active');
+            });
+
+            closeAboutModal.addEventListener('click', () => {
+                aboutModal.classList.remove('active');
+            });
+
+            aboutModal.addEventListener('click', (e) => {
+                if (e.target === aboutModal) {
+                    aboutModal.classList.remove('active');
+                }
             });
 
             closeModal.addEventListener('click', () => {
